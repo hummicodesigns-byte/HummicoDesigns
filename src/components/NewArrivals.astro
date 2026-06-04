@@ -1,0 +1,142 @@
+---
+const newArrivals = [
+  {
+    id: 1,
+    name: 'Luxury Herbal Tea Gift Box (4 Flavours)',
+    price: '$46.93',
+    description: 'Four premium wellness powders to boost your energy and immunity.',
+    fullDescription: 'Discover our Luxury Herbal Tea Gift Box featuring four premium herbal blends crafted to energize, restore, and nourish naturally, perfect for gifting or daily self-care.',
+    etsyLink: 'https://www.etsy.com/listing/4506391267/luxury-herbal-tea-gift-box-organic?sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_3&logging_key=e8960cdec57a1aefc3a8a7a287e4e7a04a706020%3A4506391267',
+    image: '/herbal3.avif',
+  },
+  {
+    id: 2,
+    name: 'Luxury Herbal Tea Box (Honey Sticks)',
+    price: '$23.94',
+    description: 'Pamper yourself with luxurious self-care products and wellness powders.',
+    fullDescription: 'Indulge in our Luxury Herbal Tea Gift Box with organic teas, a soothing candle, and honey sticks, crafted for moments of comfort and relaxation.',
+    etsyLink: 'https://www.etsy.com/listing/4510283393/luxury-herbal-tea-box-self-care-box?sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_2&pro=1&logging_key=3ecf02f09aeeeaff13d0505db8168ec6f170d693%3A4510283393',
+    image: '/herbal2.avif',
+  },
+  {
+    id: 3,
+    name: 'Moroccan Herbal Tea Gift Box',
+    price: '$37.54',
+    description: 'Hand-blended organic tea with calming herbs and adaptogens.',
+    fullDescription: 'Our signature wellness tea is a carefully curated blend of organic herbs known for their calming and restorative properties. Each bag is hand-blended in small batches to ensure maximum freshness and potency.',
+    etsyLink: 'https://www.etsy.com/listing/4505934276/moroccan-herbal-tea-gift-box-peppermint?sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_6&pro=1&logging_key=d102adf01c5b15e7ae5631ee73ffb07fa66ff027%3A4505934276',
+    image: '/morrocan.avif',
+  },
+  {
+    id: 4,
+    name: 'Lavender Coffee Retreat Box',
+    price: '$37.54',
+    description: 'A curated blend of peppermint, hibiscus, rooibos, date sugar, and a candle for a soothing ritual.',
+    fullDescription: 'Moroccan Herbal Tea Gift Box featuring peppermint, hibiscus, rooibos, date sugar, and a candle, crafted for a calming tea ritual.',
+    etsyLink: 'https://www.etsy.com/listing/4506389580/lavender-coffee-retreat-box-goat-milk?sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_4&pro=1&logging_key=7cda8d92967887e1613294ec046a6eb21030f53f%3A4506389580',
+    image: '/lavender.avif',
+  },
+];
+---
+
+<section style="padding:100px 20px;background-color:#faf6f0;position:relative;">
+  <!-- Decorative Elements -->
+  <div style="position:absolute;top:8%;right:4%;opacity:0.1;transform:rotate(-10deg);">
+    <svg width="120" height="60" viewBox="0 0 120 60" fill="none">
+      <path d="M10 30 Q30 10, 60 30 Q90 50, 110 30" stroke="#225234" stroke-width="2" fill="none" />
+    </svg>
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto;">
+    <!-- Section Header -->
+    <div style="text-align:center;margin-bottom:50px;">
+      <h2 style="font-size:2.5rem;font-weight:700;color:#225234;margin-bottom:15px;">Featured Gifts</h2>
+      <p style="font-size:1.1rem;color:#e491a6;font-weight:500;">Fresh finds for your wellness journey</p>
+    </div>
+
+    <!-- Product Grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));gap:30px;">
+      {newArrivals.map((product) => (
+        <div class="product-card" data-card={product.id} style="background-color:#fff;border-radius:15px;padding:20px;cursor:pointer;box-shadow:0 10px 30px rgba(34, 82, 52, 0.06);border:1px solid rgba(34, 82, 52, 0.06);">
+          <div style="border-radius:10px;overflow:hidden;margin-bottom:15px;aspect-ratio:1;">
+            <img src={product.image} alt={product.name} style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <h3 style="font-size:1.1rem;font-weight:600;color:#225234;margin-bottom:8px;">{product.name}</h3>
+          <p style="font-size:1.2rem;font-weight:700;color:#e491a6;">{product.price}</p>
+          <p style="font-size:0.9rem;color:#225234;opacity:0.7;margin-top:10px;line-height:1.5;">{product.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="na-overlay" id="na-overlay" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.6);z-index:999;cursor:pointer;"></div>
+
+  <!-- Expanded Cards (hidden until opened) -->
+  {newArrivals.map((product) => (
+    <div class="expanded-card-content" data-modal={product.id} style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:90%;max-width:700px;max-height:85vh;overflow-y:auto;background-color:#fff;border-radius:20px;padding:40px;padding-bottom:50px;z-index:1000;box-shadow:0 25px 60px rgba(0,0,0,0.3);">
+      <button class="na-close" data-close style="position:absolute;top:20px;right:20px;background-color:transparent;border:none;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#225234" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <div class="expanded-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:30px;">
+        <div style="border-radius:15px;overflow:hidden;">
+          <img src={product.image} alt={product.name} style="width:100%;height:auto;object-fit:cover;" />
+        </div>
+        <div>
+          <h3 style="font-size:1.8rem;font-weight:700;color:#225234;margin-bottom:10px;">{product.name}</h3>
+          <p style="font-size:1.5rem;font-weight:700;color:#e491a6;margin-bottom:20px;">{product.price}</p>
+          <p style="font-size:1rem;line-height:1.8;color:#225234;margin-bottom:30px;">{product.fullDescription}</p>
+          <a href={product.etsyLink} target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background-color:#225234;color:#faf6f0;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:600;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Buy Now
+          </a>
+        </div>
+      </div>
+    </div>
+  ))}
+</section>
+
+<style>
+  @media (max-width: 768px) {
+    .expanded-card-content {
+      top: 50% !important;
+      width: 92% !important;
+      max-height: 80vh !important;
+      padding: 20px 20px 30px 20px !important;
+      overflow-y: auto !important;
+    }
+    .expanded-grid {
+      grid-template-columns: 1fr !important;
+      gap: 15px !important;
+    }
+  }
+</style>
+
+<script>
+  const overlay = document.getElementById('na-overlay');
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('.product-card'));
+  const modals = Array.from(document.querySelectorAll<HTMLElement>('.expanded-card-content'));
+
+  const closeAll = () => {
+    if (overlay) overlay.style.display = 'none';
+    modals.forEach((m) => (m.style.display = 'none'));
+  };
+
+  const open = (id: string) => {
+    closeAll();
+    if (overlay) overlay.style.display = 'block';
+    const modal = modals.find((m) => m.dataset.modal === id);
+    if (modal) modal.style.display = 'block';
+  };
+
+  cards.forEach((card) => {
+    card.addEventListener('click', () => open(card.dataset.card || ''));
+  });
+  overlay?.addEventListener('click', closeAll);
+  modals.forEach((m) => {
+    m.querySelector('[data-close]')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeAll();
+    });
+  });
+</script>

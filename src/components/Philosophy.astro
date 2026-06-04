@@ -1,0 +1,288 @@
+---
+// Short, calming teaser blurbs that funnel to the future blog.
+// TODO_HUMMICO: Refine this copy to match your real blog posts, and (once the blog
+// exists) point each "Read more" at its specific article instead of the /blog index.
+//
+// TODO_HUMMICO: Replace each card's `image` below with a real photo (calming/lifestyle,
+// portrait-ish ~1000x1300). These are temporary stand-ins pulled from existing assets.
+const blurbs = [
+  {
+    num: '01',
+    title: 'The ritual of slowing down',
+    body: 'Steeping a cup is a small permission to pause. We blend for calm mornings and unhurried evenings — the quiet moments that put you back together.',
+    image: '/leaves.jpg', // TODO_HUMMICO: swap for real "ritual / slow morning" photo
+  },
+  {
+    num: '02',
+    title: 'Herbs chosen with intention',
+    body: 'Chamomile to soften the day’s edges, peppermint to clear the mind, lavender to settle it. Gentle by nature, and chosen with real care.',
+    image: '/leaf.jpg', // TODO_HUMMICO: swap for real "herbs / ingredients" photo
+  },
+  {
+    num: '03',
+    title: 'Care, as a love language',
+    body: 'Every box is a deliberate act of being seen — wellness you can hold, wrapped to feel as good to give as it is to receive.',
+    image: '/lavender2.avif', // TODO_HUMMICO: swap for real "gifting / care" photo
+  },
+];
+---
+
+<section class="philosophy" aria-label="Our philosophy" data-philosophy>
+  <div class="philosophy-pin">
+    <!-- Section heading — real static HTML, stays above the cards -->
+    <div class="philosophy-head">
+      <p class="philosophy-eyebrow">Our philosophy</p>
+      <h2 class="philosophy-title">Wellness, <span>made quietly.</span></h2>
+      <p class="philosophy-lede">
+        A little on why we do this — and what a Hummico ritual feels like.
+      </p>
+    </div>
+
+    <!-- Horizontal track (GSAP animates this existing DOM; it never injects text) -->
+    <div class="philosophy-track" data-track>
+      {blurbs.map((blurb) => (
+        <article class="pcard">
+          <div class="pcard-bg" style={`background-image:url('${blurb.image}')`}></div>
+          <div class="pcard-overlay"></div>
+          <div class="pcard-content">
+            <span class="pcard-num">{blurb.num}</span>
+            <h3 class="pcard-title">{blurb.title}</h3>
+            <p class="pcard-body">{blurb.body}</p>
+            <a href="/blog" class="pcard-readmore">
+              Read more
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .philosophy {
+    background-color: #faf6f0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Pinned viewport on desktop: heading on top, horizontal track below.
+     Capped to exactly one viewport (height, not min-height) so justify-content:center
+     vertically centers the whole composition while pinned — otherwise the heading +
+     tall cards + padding overflow 100vh and the cards get pushed to the bottom. */
+  .philosophy-pin {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(28px, 4vh, 56px);
+    padding: 24px 0;
+  }
+
+  .philosophy-head {
+    text-align: center;
+    padding: 0 24px;
+  }
+  .philosophy-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: #e491a6;
+    margin-bottom: 16px;
+  }
+  .philosophy-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 4.4vw, 3rem);
+    color: #225234;
+    line-height: 1.12;
+  }
+  .philosophy-title span {
+    font-style: italic;
+    font-weight: 300;
+    color: #e491a6;
+  }
+  .philosophy-lede {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.9rem, 1.4vw, 1rem);
+    color: #225234;
+    opacity: 0.7;
+    margin-top: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Horizontal track */
+  .philosophy-track {
+    display: flex;
+    gap: clamp(24px, 3vw, 40px);
+    padding: 0 6vw;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .pcard {
+    position: relative;
+    flex: 0 0 auto;
+    width: min(80vw, 640px);
+    height: min(70vh, 720px);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 26px 60px rgba(34, 82, 52, 0.18);
+    isolation: isolate;
+  }
+  .pcard-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.04);
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .pcard:hover .pcard-bg {
+    transform: scale(1.1);
+  }
+  .pcard-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(20, 46, 30, 0.92) 0%,
+      rgba(28, 64, 41, 0.55) 42%,
+      rgba(34, 82, 52, 0.12) 100%
+    );
+  }
+  .pcard-content {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(30px, 4vw, 48px);
+    color: #faf6f0;
+  }
+  .pcard-num {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    font-size: 0.78rem;
+    color: #e491a6;
+    margin-bottom: 18px;
+  }
+  .pcard-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    line-height: 1.1;
+    color: #ffffff;
+    margin-bottom: 16px;
+    max-width: 22ch;
+  }
+  .pcard-body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.92rem, 1.1vw, 1.02rem);
+    line-height: 1.75;
+    color: rgba(250, 246, 240, 0.86);
+    margin-bottom: 26px;
+    max-width: 42ch;
+  }
+  .pcard-readmore {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 0.76rem;
+    color: #ffffff;
+    text-decoration: none;
+    transition: gap 0.25s ease, color 0.25s ease;
+  }
+  .pcard-readmore svg { transition: transform 0.25s ease; }
+  .pcard-readmore:hover { color: #e491a6; gap: 13px; }
+
+  /* ── Mobile (<=768px): no pin/hijack — a finger-swipeable horizontal carousel ── */
+  @media (max-width: 768px) {
+    .philosophy-pin {
+      height: auto;
+      min-height: 0;
+      display: block;
+      padding: 90px 0;
+    }
+    .philosophy-head {
+      margin-bottom: 40px;
+    }
+    .philosophy-track {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      width: auto;
+      gap: 18px;
+      padding: 4px 11vw; /* side padding lets first/last card center-snap */
+      transform: none !important; /* guard against any stale GSAP transform */
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 0 11vw;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none; /* Firefox */
+    }
+    .philosophy-track::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+    .pcard {
+      width: 78vw;
+      max-width: 440px;
+      height: 70vh;
+      max-height: 560px;
+      scroll-snap-align: center;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const section = document.querySelector<HTMLElement>('[data-philosophy]');
+  const track = document.querySelector<HTMLElement>('[data-track]');
+
+  if (section && track) {
+    const mm = gsap.matchMedia();
+
+    // Desktop only: pin the section and drive the horizontal scroll with vertical scroll.
+    // matchMedia automatically reverts/tears this down (clearing inline transforms and the
+    // ScrollTrigger) when the viewport drops to <=768px, so mobile gets the CSS stack.
+    mm.add('(min-width: 769px)', () => {
+      const getScrollAmount = () => Math.max(0, track.scrollWidth - window.innerWidth);
+
+      // Cards travel exactly the overflow width, but the pin is held over a longer scroll
+      // distance (overflow width × this factor) so the glide is unhurried and gradual.
+      const SCROLL_FACTOR = 1.5;
+
+      const tween = gsap.to(track, {
+        x: () => -getScrollAmount(),
+        ease: 'none',
+      });
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top top',
+        end: () => `+=${getScrollAmount() * SCROLL_FACTOR}`,
+        pin: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        animation: tween,
+      });
+    });
+  }
+</script>

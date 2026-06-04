@@ -1,0 +1,173 @@
+---
+const ETSY_SHOP = 'https://www.etsy.com/shop/HummicoDesigns';
+---
+<!-- Image-background hero -->
+<!-- TODO_HUMMICO: Replace the placeholder background below with the real hero image.
+     Set it on .hero-bg via `background-image: url('/your-hero.jpg')` (keep the dark overlay
+     gradient in .hero-overlay for text legibility). Recommended ~1920x1080, calming/lifestyle. -->
+<section id="home" class="hero" aria-label="Hummico Designs hero">
+  <!-- Placeholder background (brand-toned). Swap for real image — see TODO above. -->
+  <div class="hero-bg" data-placeholder="hero-image"></div>
+
+  <div class="hero-overlay">
+    <p class="hero-eyebrow">Handcrafted in Houston · By two sisters</p>
+
+    <h1 class="hero-headline">
+      Slow mornings,<br />
+      <span>steeped in care.</span>
+    </h1>
+
+    <p class="hero-sub">
+      Hand-curated herbal tea gift boxes and quiet luxuries — blended slowly,
+      wrapped with love, and made for the people who deserve to feel truly seen.
+    </p>
+
+    <div class="hero-buttons">
+      <a href={ETSY_SHOP} target="_blank" rel="noopener noreferrer" class="btn-primary">
+        Shop on Etsy
+      </a>
+      <a href="/collections" class="btn-secondary">Explore Collections</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    /* Offset the whole hero below the fixed navbar (topbar + transparent navbar zone)
+       so the logo/links sit on clear space, not on the image. */
+    margin-top: 160px;
+    min-height: calc(92vh - 160px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Placeholder background — replace background-image with the real photo (see TODO). */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-color: #225234;
+    background-image: url('/hero-land.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Soft texture + dark gradient so overlaid text stays legible on any image */
+  .hero-overlay {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 90px 24px;
+    width: 100%;
+    min-height: calc(92vh - 160px);
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.12) 0%,
+      rgba(0,0,0,0.34) 55%,
+      rgba(0,0,0,0.52) 100%
+    );
+  }
+
+  .hero-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #e491a6;
+    font-size: clamp(0.6rem, 1.2vw, 0.78rem);
+    margin-bottom: 20px;
+  }
+
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1.08;
+    font-size: clamp(2.6rem, 6.4vw, 5.6rem);
+    margin-bottom: 10px;
+    max-width: 900px;
+  }
+  .hero-headline span {
+    font-style: normal;
+    font-weight: 600;
+    color: #f5e8d8;
+  }
+
+  .hero-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    color: rgba(255,255,255,0.82);
+    font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+    letter-spacing: 0.04em;
+    margin-top: 18px;
+    margin-bottom: 40px;
+    max-width: 560px;
+    line-height: 1.8;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: clamp(0.75rem, 1.2vw, 0.88rem);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: clamp(13px, 1.6vw, 17px) clamp(30px, 3.5vw, 46px);
+    border-radius: 50px;
+    background-color: #e491a6;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 28px rgba(228,145,166,0.45);
+  }
+  .btn-primary:hover {
+    background-color: #d4788e;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(228,145,166,0.55);
+  }
+
+  .btn-secondary {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: clamp(0.75rem, 1.2vw, 0.88rem);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: clamp(13px, 1.6vw, 17px) clamp(30px, 3.5vw, 46px);
+    border-radius: 50px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1.5px solid rgba(255,255,255,0.65);
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  }
+  .btn-secondary:hover {
+    background-color: rgba(255,255,255,0.12);
+    border-color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    /* Smaller navbar on phones → smaller offset; swap to the portrait hero image. */
+    .hero { margin-top: 130px; min-height: calc(88vh - 130px); }
+    .hero-overlay { min-height: calc(88vh - 130px); padding: 70px 22px; }
+    .hero-bg { background-image: url('/hero-mobile.png'); }
+    .hero-eyebrow { letter-spacing: 0.22em; }
+  }
+</style>

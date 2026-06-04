@@ -1,0 +1,781 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const ETSY_SHOP = 'https://www.etsy.com/shop/HummicoDesigns';
+
+// TODO_HUMMICO: Replace all placeholder copy, stats and reviews on this page with the real
+// brand content. Every number below is a stand-in — swap for verified figures.
+const introStats = [
+  { target: 500, suffix: '+', label: 'Boxes gifted' },
+  { target: 4.9, decimals: 1, suffix: '★', label: 'Average rating' },
+  { target: 100, suffix: '%', label: 'Organic ingredients' },
+  { target: 2, suffix: '', label: 'Sisters, one vision' },
+];
+
+// TODO_HUMMICO: Replace each card's `image` with a real photo (lifestyle/product,
+// landscape ~1600x1000). These are temporary stand-ins pulled from existing assets.
+const reasons = [
+  { title: 'Sister-owned', body: 'Two sisters, one table, every box packed by hand with care you can feel.', image: '/leaves.jpg' },
+  { title: 'Thoughtfully curated', body: 'Nothing filler. Each item is chosen to earn its place in the box and your day.', image: '/leaf.jpg' },
+  { title: 'Luxury wellness focus', body: 'Calm, considered, and quietly indulgent — small rituals that feel like a treat.', image: '/leaves2.jpg' },
+  { title: 'Elegant packaging', body: 'Wrapped to feel personal, so it looks as good to give as it does to receive.', image: '/lavender2.avif' },
+  { title: 'Meaningful gifting', body: 'Built for the moments that matter — a way to tell someone they are truly seen.', image: '/vector-branches.jpg' },
+];
+
+const whyStats = [
+  { target: 5, suffix: '', label: 'Curated collections' },
+  { target: 100, suffix: '%', label: 'Hand-packed boxes' },
+  { target: 1000, suffix: '+', label: 'Cups of calm shared' },
+];
+
+const faqs = [
+  { q: 'Are your teas organic?', a: 'Our blends are chosen with quality in mind. Each listing notes its ingredients so you can see exactly what is inside before you gift it.' },
+  { q: 'Can I order a custom or corporate box?', a: 'We love custom and larger orders. Message us on Etsy or through the contact form and we will help put something together.' },
+  { q: 'Do you list allergens?', a: 'Yes — every box lists its ingredients on the product page. If you have a specific concern, reach out before ordering and we will help.' },
+  { q: 'How long does shipping take?', a: 'Orders are packed by hand and dispatched as quickly as we can. Current processing and delivery times are shown at checkout on Etsy.' },
+  { q: 'What is your returns policy?', a: 'If something is not right, contact us and we will make it right. Full details are listed in our Etsy shop policies.' },
+  { q: 'Do you ship gifts directly to the recipient?', a: 'Yes. Add the recipient address at checkout and we can include a short handwritten-style note on request.' },
+];
+
+const reviews = [
+  { text: 'Add a real Etsy review here — what a customer actually wrote about their box.', name: 'First name L.' },
+  { text: 'Another genuine review goes here — keep the warmest, most specific ones.', name: 'First name L.' },
+  { text: 'A third real review here — short and heartfelt reads best in the marquee.', name: 'First name L.' },
+  { text: 'A fourth real review here — mention the gifting moment if they did.', name: 'First name L.' },
+  { text: 'A fifth real review here — packaging and presentation comments shine.', name: 'First name L.' },
+];
+---
+
+<BaseLayout title="About · Hummico Designs">
+  <!-- ════════ 1. HERO ════════ -->
+  <!-- TODO_HUMMICO: Replace the placeholder background on .ahero-bg with the real About hero
+       image (calming/lifestyle, ~1920x1080). Keep the dark overlay for text legibility. -->
+  <section class="ahero" aria-label="About Hummico Designs">
+    <div class="ahero-bg" data-placeholder="about-hero-image"></div>
+    <div class="ahero-overlay">
+      <p class="ahero-eyebrow">Sisters · Houston, Texas</p>
+      <h1 class="ahero-headline">Our Story,<br /><span>wrapped with love.</span></h1>
+      <p class="ahero-sub">
+        The two sisters — and the quiet why — behind every Hummico box.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════ 2. BRAND INTRO + COUNTERS ════════ -->
+  <section class="intro">
+    <div class="intro-grid">
+      <div class="intro-copy">
+        <p class="eyebrow">What is Hummico Designs?</p>
+        <h2 class="display-h2">Wellness gifts, <span>made with intention.</span></h2>
+        <!-- TODO_HUMMICO: Replace with real brand intro copy (calming, no medical claims). -->
+        <p class="body-text">
+          Hummico Designs is a sister-run studio creating herbal tea gift boxes and quiet
+          luxuries for the people who deserve to slow down. Every box is curated by hand and
+          wrapped to feel personal — a small, deliberate way of saying you are cared for.
+        </p>
+        <p class="body-text">
+          We started with a simple belief: that thoughtful gifting can feel like a moment of
+          calm, not another thing to tick off. That belief still shapes everything we pack.
+        </p>
+        <a href={ETSY_SHOP} target="_blank" rel="noopener noreferrer" class="btn-solid">Shop on Etsy</a>
+      </div>
+
+      <!-- TODO_HUMMICO: Replace these placeholder stats/numbers with real figures. -->
+      <div class="stats-grid">
+        {introStats.map((s) => (
+          <div class="stat-card">
+            <span
+              class="stat-num"
+              data-target={s.target}
+              data-decimals={s.decimals ?? 0}
+              data-suffix={s.suffix}
+            >{s.decimals ? s.target.toFixed(s.decimals) : s.target.toLocaleString('en-US')}{s.suffix}</span>
+            <span class="stat-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 3. THE SISTERS ════════ -->
+  <section class="sisters">
+    <div class="sisters-grid">
+      <!-- Reuses the same image file as the homepage About section -->
+      <div class="sisters-photo">
+        <img src="/about.jpg" alt="The two sisters behind Hummico Designs" />
+        <div class="sisters-photo-tint"></div>
+      </div>
+      <div class="sisters-copy">
+        <p class="eyebrow">Meet the makers</p>
+        <h2 class="display-h2">Two sisters, <span>one table.</span></h2>
+        <!-- TODO_HUMMICO: Replace with the sisters' real short bio. -->
+        <p class="body-text">
+          We are two sisters who grew up believing that the smallest gestures carry the most
+          meaning. Hummico began at our kitchen table, between cups of tea, and it has stayed
+          just as personal ever since — every box still passes through both our hands.
+        </p>
+        <!-- TODO_HUMMICO: Replace with a real short "note from us" quote. -->
+        <blockquote class="note-quote">
+          “We don't just fill boxes — we pack the feeling of being thought of. That's the
+          whole point of Hummico.”
+          <cite>— The Hummico sisters</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 4. WHY HUMMICO DESIGNS? ════════ -->
+  <section class="why">
+    <div class="why-inner">
+      <div class="why-head">
+        <p class="eyebrow">Why Hummico Designs?</p>
+        <h2 class="display-h2">The little things, <span>done with care.</span></h2>
+      </div>
+
+      <!-- Stacking image cards. Text is real HTML laid over each image; GSAP only moves them.
+           TODO_HUMMICO: Refine these reason blurbs to your real brand voice. -->
+      <div class="why-stack" data-why-stack>
+        {reasons.map((r, i) => (
+          <article class="why-card" data-why-card style={`background-image:url('${r.image}')`}>
+            <div class="why-card-overlay"></div>
+            <div class="why-card-content">
+              <span class="why-num">{String(i + 1).padStart(2, '0')} / {String(reasons.length).padStart(2, '0')}</span>
+              <h3 class="why-card-title">{r.title}</h3>
+              <p class="why-card-body">{r.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- TODO_HUMMICO: Replace these placeholder stats/numbers with real figures. -->
+      <div class="why-stats">
+        {whyStats.map((s) => (
+          <div class="why-stat">
+            <span
+              class="stat-num"
+              data-target={s.target}
+              data-decimals={s.decimals ?? 0}
+              data-suffix={s.suffix}
+            >{s.target.toLocaleString('en-US')}{s.suffix}</span>
+            <span class="stat-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 5. REVIEWS — marquee ════════ -->
+  <section class="rev">
+    <div class="rev-head">
+      <p class="eyebrow" style="color:#e491a6;">Kind words</p>
+      <h2 class="display-h2" style="color:#faf6f0;">Loved, gifted, <span style="color:#e491a6;">remembered.</span></h2>
+    </div>
+
+    <!-- TODO_HUMMICO: Replace placeholder reviews with real Etsy reviews; remove the
+         "Placeholder" tags once they are real. -->
+    <div class="rev-marquee">
+      <div class="rev-track">
+        {[...reviews, ...reviews].map((r) => (
+          <figure class="rev-card">
+            <span class="rev-tag">Placeholder</span>
+            <div class="rev-stars" aria-label="5 out of 5 stars">
+              {Array.from({ length: 5 }).map(() => (
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#e491a6" stroke="#e491a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              ))}
+            </div>
+            <blockquote class="rev-text">“{r.text}”</blockquote>
+            <figcaption class="rev-name">{r.name}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 6. FAQ (native accordion — no JS) ════════ -->
+  <section class="faq">
+    <!-- TODO_HUMMICO: Replace the placeholder background on .faq-bg with a real photo. -->
+    <div class="faq-bg" data-placeholder="faq-image"></div>
+    <div class="faq-overlay"></div>
+    <div class="faq-inner">
+      <div class="faq-head">
+        <p class="eyebrow">Good to know</p>
+        <h2 class="display-h2">Questions, <span>answered.</span></h2>
+      </div>
+
+      <!-- TODO_HUMMICO: Replace placeholder Q&As with your real answers (keep them claim-free). -->
+      <div class="faq-list">
+        {faqs.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-q">
+              <span>{item.q}</span>
+              <svg class="faq-chev" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <p class="faq-a">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ── Shared type helpers (match homepage) ── */
+  .eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: #e491a6;
+    margin-bottom: 16px;
+  }
+  .display-h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 4.4vw, 3rem);
+    color: #225234;
+    line-height: 1.12;
+  }
+  .display-h2 span {
+    font-style: italic;
+    font-weight: 300;
+    color: #e491a6;
+  }
+  .body-text {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
+    line-height: 1.9;
+    color: #225234;
+    opacity: 0.85;
+    margin-top: 18px;
+  }
+  .btn-solid {
+    display: inline-block;
+    margin-top: 30px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    text-decoration: none;
+    padding: 14px 34px;
+    border-radius: 50px;
+    background-color: #225234;
+    color: #faf6f0;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  .btn-solid:hover { background-color: #2d6b47; transform: translateY(-2px); }
+
+  /* ── 1. HERO ── */
+  .ahero {
+    position: relative;
+    width: 100%;
+    margin-top: 160px; /* clears the fixed topbar + transparent navbar, like the homepage */
+    min-height: calc(82vh - 160px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .ahero-bg {
+    position: absolute;
+    inset: 0;
+    background-color: #225234;
+    /* Placeholder brand gradient — replace with the real photo (see TODO above) */
+    background-image:
+      radial-gradient(circle at 22% 25%, rgba(228,145,166,0.30) 0%, transparent 45%),
+      radial-gradient(circle at 82% 78%, rgba(45,107,71,0.55) 0%, transparent 50%),
+      linear-gradient(150deg, #1c4429 0%, #225234 45%, #2d6b47 100%);
+    background-size: cover;
+    background-position: center;
+  }
+  .ahero-overlay {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px;
+    width: 100%;
+    min-height: calc(82vh - 160px);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.52) 100%);
+  }
+  .ahero-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #e491a6;
+    font-size: clamp(0.6rem, 1.2vw, 0.78rem);
+    margin-bottom: 20px;
+  }
+  .ahero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1.08;
+    font-size: clamp(2.6rem, 6.4vw, 5.6rem);
+    margin-bottom: 10px;
+    max-width: 900px;
+  }
+  .ahero-headline span { font-style: normal; font-weight: 600; color: #f5e8d8; }
+  .ahero-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    color: rgba(255,255,255,0.82);
+    font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+    letter-spacing: 0.04em;
+    margin-top: 16px;
+    max-width: 520px;
+    line-height: 1.8;
+  }
+
+  /* ── 2. INTRO + COUNTERS ── */
+  .intro {
+    background-color: #faf6f0;
+    padding: 110px 20px;
+  }
+  .intro-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .stat-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(34, 82, 52, 0.08);
+    border-top: 3px solid #e491a6;
+    border-radius: 16px;
+    padding: 34px 26px;
+    text-align: center;
+    box-shadow: 0 14px 40px rgba(34, 82, 52, 0.05);
+  }
+  .stat-num {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    line-height: 1;
+    color: #225234;
+    margin-bottom: 12px;
+  }
+  .stat-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    color: #225234;
+    opacity: 0.75;
+  }
+
+  /* ── 3. SISTERS ── */
+  .sisters {
+    background-color: #faf6f0;
+    padding: 30px 20px 110px;
+  }
+  .sisters-grid {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .sisters-photo {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(34, 82, 52, 0.18);
+    aspect-ratio: 4 / 5;
+  }
+  .sisters-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .sisters-photo-tint {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, transparent 55%, rgba(34,82,52,0.28) 100%);
+  }
+  .note-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+    line-height: 1.55;
+    color: #225234;
+    border-left: 2px solid #e491a6;
+    padding-left: 20px;
+    margin-top: 28px;
+  }
+  .note-quote cite {
+    display: block;
+    margin-top: 14px;
+    font-family: 'Jost', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: #e491a6;
+  }
+
+  /* ── 4. WHY (stacking image cards) ── */
+  .why {
+    background-color: #faf6f0;
+    padding: 110px 20px;
+  }
+  .why-inner { max-width: 1140px; margin: 0 auto; }
+  .why-head { text-align: center; margin-bottom: 56px; }
+  .why-head .eyebrow { color: #e491a6; }
+
+  /* Base / mobile: clean full-width stacked image cards (no pin) */
+  .why-stack {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .why-card {
+    position: relative;
+    width: 100%;
+    min-height: 60vh;
+    border-radius: 22px;
+    overflow: hidden;
+    background-color: #225234;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 24px 60px rgba(34, 82, 52, 0.2);
+    display: flex;
+    align-items: center;
+    will-change: transform;
+  }
+  /* Brand green/rose tint so the white text stays readable over any photo */
+  .why-card-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(115deg, rgba(20,46,30,0.86) 0%, rgba(34,82,52,0.62) 55%, rgba(34,82,52,0.42) 100%),
+      radial-gradient(circle at 88% 20%, rgba(228,145,166,0.28) 0%, transparent 45%);
+  }
+  .why-card-content {
+    position: relative;
+    z-index: 1;
+    padding: clamp(32px, 5vw, 68px);
+    max-width: 640px;
+    color: #faf6f0;
+  }
+  .why-num {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-size: 0.74rem;
+    color: #e491a6;
+  }
+  .why-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+    color: #ffffff;
+    margin: 16px 0 14px;
+    line-height: 1.12;
+  }
+  .why-card-body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.92rem, 1.2vw, 1.05rem);
+    line-height: 1.8;
+    color: rgba(250, 246, 240, 0.88);
+    max-width: 46ch;
+  }
+
+  /* Desktop: absolutely-stacked cards inside a pinned viewport (GSAP drives the rise).
+     height = card HEIGHT, max-width = card WIDTH. The card is centered in the viewport via
+     the pin's start: 'center center' (see script), so a smaller height leaves a clear gap
+     above (below the navbar) and below. */
+  @media (min-width: 769px) {
+    .why-stack {
+      position: relative;
+      display: block;
+      height: 62vh;       /* ← card height (smaller = more breathing room top & bottom) */
+      max-width: 940px;   /* ← card width */
+      margin: 0 auto;
+    }
+    .why-card {
+      position: absolute;
+      inset: 0;
+      min-height: 0;
+      height: 100%;
+    }
+  }
+
+  .why-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 56px;
+    margin-top: 64px;
+    padding-top: 56px;
+    border-top: 1px solid rgba(34, 82, 52, 0.12);
+  }
+  .why-stat { text-align: center; }
+
+  /* ── 6. FAQ (over a background image) ── */
+  .faq {
+    position: relative;
+    padding: 110px 20px;
+    overflow: hidden;
+  }
+  .faq-bg {
+    position: absolute;
+    inset: 0;
+    background-color: #225234;
+    /* Placeholder image — replace with a real photo (see TODO) */
+    background-image: url('/leaves2.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .faq-overlay {
+    position: absolute;
+    inset: 0;
+    /* Brand green dark tint so the cards + heading read clearly */
+    background: linear-gradient(rgba(20,46,30,0.84), rgba(20,46,30,0.88));
+  }
+  .faq-inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; }
+  .faq-head { text-align: center; margin-bottom: 48px; }
+  .faq-head .display-h2 { color: #faf6f0; }
+  .faq-list { display: flex; flex-direction: column; gap: 14px; }
+  .faq-item {
+    background-color: #ffffff;
+    border: 1px solid rgba(34, 82, 52, 0.08);
+    border-radius: 14px;
+    padding: 0 26px;
+    box-shadow: 0 10px 30px rgba(34, 82, 52, 0.04);
+  }
+  .faq-q {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 22px 0;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+    color: #225234;
+  }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-chev { flex-shrink: 0; color: #e491a6; transition: transform 0.3s ease; }
+  .faq-item[open] .faq-chev { transform: rotate(180deg); }
+  .faq-a {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: #225234;
+    opacity: 0.82;
+    padding: 0 0 24px;
+    margin: 0;
+    max-width: 64ch;
+  }
+
+  /* ── 6. REVIEWS MARQUEE ── */
+  .rev {
+    background-color: #225234;
+    padding: 90px 0;
+    overflow: hidden;
+  }
+  .rev-head { text-align: center; margin-bottom: 48px; padding: 0 20px; }
+  .rev-marquee {
+    position: relative;
+    width: 100%;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+  .rev-track {
+    display: flex;
+    width: max-content;
+    gap: 24px;
+    padding: 0 12px;
+    animation: marquee 42s linear infinite;
+  }
+  .rev-marquee:hover .rev-track { animation-play-state: paused; }
+  .rev-card {
+    position: relative;
+    flex: 0 0 auto;
+    width: 320px;
+    background-color: #faf6f0;
+    border-radius: 16px;
+    padding: 30px 28px;
+    margin: 0;
+  }
+  .rev-tag {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #b06b7d;
+    background: rgba(228, 145, 166, 0.14);
+    border: 1px dashed rgba(228, 145, 166, 0.6);
+    border-radius: 20px;
+    padding: 3px 9px;
+  }
+  .rev-stars { display: flex; gap: 2px; margin-bottom: 16px; }
+  .rev-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: #225234;
+    margin-bottom: 16px;
+  }
+  .rev-name {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    color: #e491a6;
+  }
+
+  /* ── Responsive (~mobile 400px) ── */
+  @media (max-width: 900px) {
+    .intro-grid { grid-template-columns: 1fr; gap: 48px; }
+    .sisters-grid { grid-template-columns: 1fr; gap: 36px; }
+    .sisters-grid .sisters-photo { order: -1; }
+  }
+  @media (max-width: 768px) {
+    .ahero { margin-top: 130px; min-height: calc(72vh - 130px); }
+    .ahero-overlay { min-height: calc(72vh - 130px); padding: 64px 22px; }
+    .intro, .why, .faq { padding: 70px 18px; }
+    .sisters { padding: 20px 18px 70px; }
+
+    /* Mobile stacking via position:sticky — every card is a full-viewport panel pinned at the
+       SAME top:0, so only the current one is visible and the next slides up to fully cover it.
+       Nothing peeks at the bottom. NO scroll hijack (native vertical scroll throughout).
+       Ascending z-index makes later cards layer above earlier ones as they arrive. */
+    .why-stack { display: block; }
+    .why-card {
+      position: sticky;
+      top: 0;
+      min-height: 100vh;
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    .why-card:nth-child(1) { z-index: 1; }
+    .why-card:nth-child(2) { z-index: 2; }
+    .why-card:nth-child(3) { z-index: 3; }
+    .why-card:nth-child(4) { z-index: 4; }
+    .why-card:nth-child(5) { z-index: 5; }
+  }
+  @media (max-width: 560px) {
+    .stats-grid { gap: 14px; }
+    .stat-card { padding: 26px 16px; }
+    .why-stats { gap: 36px; }
+    .rev-card { width: 80vw; max-width: 320px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rev-track { animation: none; }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── "Why Hummico" stacking cards (GSAP only moves existing DOM; text is real HTML) ──
+  const stack = document.querySelector<HTMLElement>('[data-why-stack]');
+  if (stack) {
+    const cards = gsap.utils.toArray<HTMLElement>('[data-why-card]', stack);
+    const mm = gsap.matchMedia();
+
+    // Desktop: pin the stack centered; each later card starts FULLY below the viewport
+    // (so it never peeks at the bottom) and rises to the exact same centered position,
+    // overlaying the previous one. z-index ascends so later cards layer above earlier ones.
+    mm.add('(min-width: 769px)', () => {
+      gsap.set(cards, { zIndex: (i: number) => i + 1, y: 0 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: stack,
+          start: 'center center',
+          end: () => `+=${(cards.length - 1) * window.innerHeight * 0.9}`,
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+      cards.forEach((card, i) => {
+        if (i === 0) return;
+        // from one full viewport-height below → up to 0 (same spot as every other card)
+        tl.fromTo(card, { y: () => window.innerHeight }, { y: 0, ease: 'none' }, i - 1);
+      });
+    });
+
+    // Mobile (<=768px) uses pure CSS position:sticky stacking (see styles) — no JS, no pin,
+    // no scroll trapping. Nothing to set up here.
+  }
+
+  // Counters: animate 0 → target when scrolled into view. The final value is already
+  // present as real static HTML; this only animates the count-up (and respects reduced motion).
+  const nums = Array.from(document.querySelectorAll<HTMLElement>('.stat-num[data-target]'));
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const format = (value: number, decimals: number) =>
+    decimals > 0 ? value.toFixed(decimals) : Math.round(value).toLocaleString('en-US');
+
+  const run = (el: HTMLElement) => {
+    const target = parseFloat(el.dataset.target || '0');
+    const decimals = parseInt(el.dataset.decimals || '0', 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1600;
+    let start: number | null = null;
+
+    const tick = (now: number) => {
+      if (start === null) start = now;
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = format(target * eased, decimals) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = format(target, decimals) + suffix;
+    };
+    requestAnimationFrame(tick);
+  };
+
+  if (!reduce && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          run(entry.target as HTMLElement);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    nums.forEach((n) => io.observe(n));
+  }
+</script>

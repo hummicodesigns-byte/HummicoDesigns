@@ -1,0 +1,165 @@
+---
+const trendingProducts = [
+  {
+    id: 1,
+    name: 'Luxury Wellness Herbal Tea Box with Scented Candle',
+    price: '$37.54',
+    description: 'A thoughtfully curated set designed to bring peace and tranquility to your daily routine.',
+    etsyLink: 'https://www.etsy.com/listing/4510430252/luxury-wellness-herbal-tea-box-organic?sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_1&pro=1&logging_key=0b3df3d5dc5a56353da685de93effab31c67bd37%3A4510430252',
+    image: '/herbal tea box.avif',
+  },
+  {
+    id: 2,
+    name: 'Luxury Herbal Tea Gift Box (4 Flavours)',
+    price: '$46.93',
+    description: 'Four premium wellness powders to boost your energy and immunity.',
+    etsyLink: 'https://www.etsy.com/listing/4506391267/luxury-herbal-tea-gift-box-organic?sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_3&logging_key=e8960cdec57a1aefc3a8a7a287e4e7a04a706020%3A4506391267',
+    image: '/herbal3.avif',
+  },
+];
+---
+
+<section class="trending-section" style="padding:100px 20px;position:relative;overflow:hidden;">
+  <!-- Background Image with Dark Filter -->
+  <div style="position:absolute;top:0;left:0;right:0;bottom:0;background-image:url(/leaves.jpg);background-size:cover;background-position:center;filter:brightness(0.4);border-radius:50px;"></div>
+
+  <!-- Decorative Elements -->
+  <div style="position:absolute;top:10%;left:5%;opacity:0.15;">
+    <svg width="80" height="150" viewBox="0 0 80 150" fill="none">
+      <path d="M40 10 C70 30, 80 70, 40 140 C0 70, 10 30, 40 10" stroke="#faf6f0" stroke-width="2" fill="none" />
+    </svg>
+  </div>
+
+  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1;">
+    <!-- Section Header -->
+    <div style="text-align:center;margin-bottom:50px;">
+      <h2 style="font-size:2.5rem;font-weight:700;color:#faf6f0;margin-bottom:15px;">Trending Now</h2>
+      <p style="font-size:1.1rem;color:#e491a6;font-weight:500;">Hot picks this season</p>
+    </div>
+
+    <!-- Carousel -->
+    <div style="position:relative;max-width:900px;margin:0 auto;">
+      {trendingProducts.map((product, index) => (
+        <div
+          class="trending-card"
+          data-slide={index}
+          style={`display:${index === 0 ? 'grid' : 'none'};grid-template-columns:1fr 1fr;gap:50px;align-items:center;background-color:rgba(250, 246, 240, 0.97);border-radius:25px;padding:40px;`}
+        >
+          <!-- Image -->
+          <div style="border-radius:20px;overflow:hidden;box-shadow:0 15px 40px rgba(34, 82, 52, 0.15);">
+            <img src={product.image} alt={product.name} style="width:100%;height:300px;object-fit:cover;display:block;" />
+          </div>
+
+          <!-- Content -->
+          <div>
+            <span style="display:inline-block;background-color:#e491a6;color:#fff;padding:5px 15px;border-radius:20px;font-size:0.85rem;font-weight:600;margin-bottom:15px;">TRENDING</span>
+            <h3 style="font-size:1.6rem;font-weight:700;color:#225234;margin-bottom:10px;">{product.name}</h3>
+            <p style="font-size:1.2rem;font-weight:600;color:#e491a6;margin-bottom:20px;">{product.price}</p>
+            <p style="font-size:0.95rem;line-height:1.7;color:#225234;margin-bottom:30px;opacity:0.85;">{product.description}</p>
+            <a href={product.etsyLink} target="_blank" rel="noopener noreferrer" class="trending-buy-btn">Buy Now</a>
+          </div>
+        </div>
+      ))}
+
+      <!-- Navigation Arrows -->
+      <button class="nav-arrow nav-arrow-left" id="trending-prev" aria-label="Previous">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="nav-arrow nav-arrow-right" id="trending-next" aria-label="Next">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+
+      <!-- Dots -->
+      <div style="display:flex;justify-content:center;gap:10px;margin-top:30px;">
+        {trendingProducts.map((_, index) => (
+          <button class="trending-dot" data-dot={index} aria-label={`Slide ${index + 1}`}></button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .trending-buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #225234;
+    color: #faf6f0;
+    padding: 14px 32px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  .trending-buy-btn:hover {
+    background-color: #2d6b47;
+  }
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #225234;
+    color: #faf6f0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+  .nav-arrow:hover {
+    background-color: #2d6b47;
+    transform: translateY(-50%) scale(1.1);
+  }
+  .nav-arrow-left { left: -25px; }
+  .nav-arrow-right { right: -25px; }
+  .trending-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    background-color: rgba(255,255,255,0.5);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+  }
+  .trending-dot.active {
+    width: 30px;
+    background-color: #e491a6;
+  }
+  @media (max-width: 768px) {
+    .trending-card {
+      grid-template-columns: 1fr !important;
+      gap: 25px !important;
+      padding: 25px !important;
+    }
+    .nav-arrow {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  const slides = Array.from(document.querySelectorAll<HTMLElement>('.trending-card'));
+  const dots = Array.from(document.querySelectorAll<HTMLElement>('.trending-dot'));
+  let current = 0;
+
+  const show = (index: number) => {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      slide.style.display = i === current ? 'grid' : 'none';
+    });
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+  };
+
+  document.getElementById('trending-prev')?.addEventListener('click', () => show(current - 1));
+  document.getElementById('trending-next')?.addEventListener('click', () => show(current + 1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
+
+  show(0);
+</script>

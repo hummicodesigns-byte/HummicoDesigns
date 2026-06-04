@@ -1,0 +1,195 @@
+---
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Collections', href: '/collections' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
+];
+const year = new Date().getFullYear();
+---
+
+<footer id="contact" style="background-color:#225234;padding:80px 20px 30px;position:relative;">
+  <!-- Decorative Element -->
+  <div style="position:absolute;top:10%;right:2%;opacity:0.07;">
+    <svg width="120" height="120" viewBox="0 0 100 100" fill="none">
+      <path d="M50 10 C80 30, 90 60, 50 90 C10 60, 20 30, 50 10" stroke="#faf6f0" stroke-width="1" fill="none" />
+    </svg>
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="footer-grid" style="display:grid;grid-template-columns:1.2fr 1.6fr 1.2fr;gap:50px;margin-bottom:55px;">
+      <!-- Brand Column -->
+      <div>
+        <img src="/logo footer.png" alt="Hummico Design Logo" style="width:120px;height:auto;margin-bottom:18px;" />
+        <p class="footer-brand-statement">
+          Wellness gifts made with intention, for those who deserve to feel truly seen.
+        </p>
+        <p class="footer-crafted"> Crafted thoughtfully in Houston, Texas</p>
+      </div>
+
+      <!-- Nav Column -->
+      <div style="text-align:center;">
+        <p class="footer-heading">Quick Links</p>
+        <div class="footer-nav-links" style="display:flex;gap:28px;justify-content:center;flex-wrap:wrap;">
+          {navLinks.map((link) => (
+            <a href={link.href} class="footer-link">{link.label}</a>
+          ))}
+        </div>
+
+        <div style="height:1px;background-color:rgba(250,246,240,0.1);margin:30px auto;max-width:200px;"></div>
+
+        <p class="footer-label">Sisters-Owned · Houston, TX</p>
+        <p style="font-family:'Cormorant Garamond', serif;font-style:italic;font-weight:300;font-size:clamp(0.95rem, 1.4vw, 1.1rem);color:rgba(250,246,240,0.6);line-height:1.6;">
+          "We built the brand.<br />Where luxury and care aren't opposites."
+        </p>
+      </div>
+
+      <!-- Connect Column -->
+      <div>
+        <p class="footer-heading">Connect</p>
+
+        <div style="display:flex;gap:12px;margin-bottom:28px;">
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/hummico_designs/" target="_blank" rel="noopener noreferrer" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#faf6f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="#faf6f0" stroke="none"/>
+            </svg>
+          </a>
+          <!-- Etsy -->
+          <a href="https://www.etsy.com/shop/HummicoDesigns" target="_blank" rel="noopener noreferrer" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="#faf6f0">
+              <path d="M5 2h2.5v20H5V2zm3.5 0h8.8c.4 1.2.7 2.5.8 3.8h-.8C16.6 4.2 15.4 3 13 3H9.5v7H12c.5-1 1-2 1.5-2.5h.8v6h-.8C13 13 12.5 12 12 12H9.5v7H13c2.4 0 3.8-1.4 4.6-3h.8c-.2 1.5-.5 2.8-.9 4H5v-1h.5c1 0 1.5-.3 1.5-1V3.5C7 2.8 6.5 2.5 5.5 2.5H5V2h3.5z"/>
+            </svg>
+          </a>
+          <!-- Pinterest -->
+          <a href="https://www.pinterest.com/hummicodesigns/" target="_blank" rel="noopener noreferrer" class="social-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="#faf6f0">
+              <path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.852 0 1.265.64 1.265 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.806 1.476 1.806 1.772 0 3.138-1.867 3.138-4.562 0-2.387-1.715-4.057-4.163-4.057-2.836 0-4.498 2.127-4.498 4.326 0 .856.33 1.775.741 2.276a.3.3 0 0 1 .069.284c-.076.313-.244.995-.277 1.134-.044.183-.146.222-.337.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.966-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Contact Info -->
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(250,246,240,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span style="font-family:'Jost', sans-serif;font-weight:300;color:#faf6f0;font-size:0.85rem;opacity:0.7;">Hummicodesigns@gmail.com</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(250,246,240,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span style="font-family:'Jost', sans-serif;font-weight:300;color:#faf6f0;font-size:0.85rem;opacity:0.7;">Houston, Texas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div style="height:1px;background-color:rgba(250,246,240,0.1);margin-bottom:24px;"></div>
+
+    <!-- Copyright -->
+    <p class="footer-copyright">© {year} Hummico Designs. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .footer-brand-statement {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    color: rgba(250,246,240,0.75);
+    line-height: 1.65;
+    margin-top: 14px;
+  }
+  .footer-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    color: #e491a6;
+    margin-bottom: 16px;
+  }
+  .footer-heading {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.82rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #faf6f0;
+    margin-bottom: 20px;
+  }
+  .footer-link {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    color: #faf6f0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.72;
+    transition: all 0.3s ease;
+    letter-spacing: 0.03em;
+  }
+  .footer-link:hover {
+    color: #e491a6;
+    opacity: 1;
+  }
+  .footer-crafted {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: rgba(250,246,240,0.5);
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+  .footer-copyright {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    text-align: center;
+    color: #faf6f0;
+    font-size: 0.8rem;
+    opacity: 0.45;
+    letter-spacing: 0.05em;
+  }
+  .social-icon {
+    background-color: rgba(250,246,240,0.08);
+    border: 1px solid rgba(250,246,240,0.12);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  .social-icon:hover {
+    background-color: #e491a6;
+    border-color: #e491a6;
+    transform: translateY(-2px);
+  }
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr !important;
+      text-align: center !important;
+      gap: 40px !important;
+    }
+    .footer-grid > div:first-child {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-grid > div:nth-child(3) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-nav-links {
+      flex-direction: column !important;
+      gap: 14px !important;
+    }
+  }
+</style>

@@ -1,17 +1,22 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Philosophy from '../components/Philosophy.astro';
+import CollectionsTeaser from '../components/CollectionsTeaser.astro';
+import OurGuarantee from '../components/OurGuarantee.astro';
+import BusinessCard from '../components/BusinessCard.astro';
+import InstagramReels from '../components/InstagramReels.astro';
+import Reviews from '../components/Reviews.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="HummicoDesigns">
+  <Hero />
+  <About />
+  <Philosophy />
+  <CollectionsTeaser />
+  <OurGuarantee />
+  <BusinessCard />
+  <Reviews />
+  <InstagramReels />
+</BaseLayout>

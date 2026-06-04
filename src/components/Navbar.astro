@@ -1,0 +1,181 @@
+---
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Collections', href: '/collections' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
+];
+---
+
+<nav class="navbar" id="navbar">
+  <!-- Left Nav Links - Desktop Only -->
+  <div class="nav-links-left">
+    {navLinks.slice(0, 2
+
+    ).map((link) => (
+      <a href={link.href} class="nav-link">{link.label}</a>
+    ))}
+  </div>
+
+  <!-- Logo - Center -->
+  <div style="flex:0;display:flex;justify-content:center;">
+    <img src="/logo.png" alt="Hummico Design Logo" class="navbar-logo" />
+  </div>
+
+  <!-- Right Nav Links - Desktop Only -->
+  <div class="nav-links-right">
+    {navLinks.slice(2).map((link) => (
+      <a href={link.href} class="nav-link">{link.label}</a>
+    ))}
+  </div>
+
+  <!-- Mobile Menu Button -->
+  <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+    <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#225234" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+    <svg class="icon-x" style="display:none;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#225234" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    {navLinks.map((link) => (
+      <a href={link.href} class="mobile-menu-link">{link.label}</a>
+    ))}
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 45px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    padding: 28px 70px;
+    background-color: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .navbar.scrolled {
+    top: 0;
+    padding: 15px 40px;
+    background-color: rgba(250, 246, 240, 0.96);
+    backdrop-filter: blur(10px);
+    
+    box-shadow: 0 2px 20px rgba(34, 82, 52, 0.08);
+  }
+  .navbar-logo {
+    height: 100px;
+    transition: height 0.2s ease;
+    object-fit: contain;
+  }
+  .navbar.scrolled .navbar-logo {
+    height: 90px;
+  }
+  .nav-link {
+    color: #225234;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+    padding: 8px 16px;
+    margin: 0 8px;
+  }
+  .nav-link:hover {
+    color: #e491a6;
+  }
+   .nav-links-left, .nav-links-right {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+  }
+  .nav-links-left {
+    justify-content: flex-start;
+  }
+  .nav-links-right {
+    justify-content: flex-end;
+  }
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100vh;
+    background-color: #faf6f0;
+    padding: 80px 40px;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.08);
+    z-index: 1001;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .mobile-menu.open {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .mobile-menu-link {
+    display: block;
+    color: #225234;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.5rem;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(34, 82, 52, 0.08);
+  }
+  @media (max-width: 900px) {
+    .nav-links-left, .nav-links-right {
+      display: none;
+    }
+    .mobile-menu-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .navbar {
+      padding: 20px 20px !important;
+      align-items: center !important;
+    }
+    .navbar-logo {
+      height: 70px !important;
+    }
+  }
+</style>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const handleScroll = () => {
+    if (window.scrollY > 50) navbar?.classList.add('scrolled');
+    else navbar?.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', handleScroll);
+  handleScroll();
+
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconMenu = btn?.querySelector('.icon-menu') as HTMLElement | null;
+  const iconX = btn?.querySelector('.icon-x') as HTMLElement | null;
+
+  const setOpen = (open: boolean) => {
+    menu?.classList.toggle('open', open);
+    if (iconMenu) iconMenu.style.display = open ? 'none' : 'block';
+    if (iconX) iconX.style.display = open ? 'block' : 'none';
+  };
+
+  btn?.addEventListener('click', () => {
+    setOpen(!menu?.classList.contains('open'));
+  });
+  menu?.querySelectorAll('.mobile-menu-link').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
+  });
+</script>
