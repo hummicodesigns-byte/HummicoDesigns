@@ -1,0 +1,871 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// COLLECTIONS PAGE — placeholder data
+//
+// Everything below is REAL static content rendered into the HTML at build time
+// (good for SEO). GSAP only animates the existing DOM; it never injects text.
+//
+// HOW TO ADD A REAL PRODUCT LATER:
+//   Copy one object in an array below and fill in the fields:
+//     name        → product title
+//     description → short calming/benefit-adjacent blurb (NO medical claims)
+//     price       → display price string, e.g. '$32.00'
+//     etsyLink    → the product's Etsy listing URL
+//     image       → '/your-photo.jpg' in /public  (leave '' to show the placeholder box)
+//   The same <ProductCard> markup powers Best Sellers and Our Collections, so a
+//   product object is interchangeable between the two arrays.
+// ─────────────────────────────────────────────────────────────────────────────
+
+// TODO_HUMMICO: Replace these 4 placeholder best-sellers with real products
+// (name, description, price, Etsy listing URL, and a product photo).
+const bestSellers = [
+  {
+    name: 'TODO_HUMMICO — Tea Ritual Box',
+    description: 'A slow-morning ritual in a box: hand-blended herbal teas and quiet comforts, wrapped to feel like a gentle pause in the day.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+  },
+  {
+    name: 'TODO_HUMMICO — Calm Evening Set',
+    description: 'Soft, soothing botanicals chosen for unwinding — the kind of small luxury that turns the end of the day into a moment for yourself.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+  },
+  {
+    name: 'TODO_HUMMICO — Self-Care Bundle',
+    description: 'A thoughtfully curated mix of wellness treats and warm sips, put together to help someone feel genuinely looked after.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+  },
+  {
+    name: 'TODO_HUMMICO — Cozy Comfort Box',
+    description: 'Everything needed for a cozy in: comforting teas and gentle indulgences, hand-packed to feel personal and warm.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+  },
+];
+
+// TODO_HUMMICO: Replace these 6 placeholder products with the real catalogue.
+// `category` is shown as a small chip on each card — keep it matching one of the
+// filter labels below so real filtering can hook in later.
+const collectionProducts = [
+  {
+    name: 'TODO_HUMMICO — Garden Tea Box',
+    description: 'A bright, floral blend collection for slow afternoons — gentle, fragrant, and made for lingering over a warm cup.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+    category: 'Tea Ritual Boxes',
+  },
+  {
+    name: 'TODO_HUMMICO — Wellness Gift Set',
+    description: 'A caring little collection of comforts, curated to tell someone they are thought of and quietly looked after.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+    category: 'Wellness Gifts',
+  },
+  {
+    name: 'TODO_HUMMICO — Spa Day Set',
+    description: 'Soft, restorative self-care treats brought together for an at-home spa moment — calm, simple, and indulgent.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+    category: 'Self-Care Sets',
+  },
+  {
+    name: 'TODO_HUMMICO — Morning Coffee Box',
+    description: 'A warm, grounding coffee collection for unhurried mornings, hand-packed for people who savour the first cup.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+    category: 'Coffee Collection',
+  },
+  {
+    name: 'TODO_HUMMICO — Restful Night Box',
+    description: 'A gentle wind-down collection of soothing botanicals, chosen to help close the day softly and slowly.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+    category: 'Tea Ritual Boxes',
+  },
+  {
+    name: 'TODO_HUMMICO — Thinking of You Set',
+    description: 'A heartfelt little gift of warm sips and small comforts — a quiet way to say someone matters to you.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+    category: 'Wellness Gifts',
+  },
+];
+
+// TODO_HUMMICO: Replace these 4 placeholder featured products (each shows a light
+// info panel on the left and a product photo on the right).
+const featured = [
+  {
+    name: 'TODO_HUMMICO — Signature Tea Ritual',
+    description: 'Our most-loved box, made larger and lovelier — a complete slow-living ritual of hand-blended teas and quiet comforts, presented to feel like an occasion in itself.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+  },
+  {
+    name: 'TODO_HUMMICO — The Calm Collection',
+    description: 'A curated set built entirely around unwinding — soothing botanicals and soft indulgences gathered for the people who deserve to truly slow down.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+  },
+  {
+    name: 'TODO_HUMMICO — Luxury Gifting Box',
+    description: 'Our most giftable showcase — elegantly wrapped, hand-packed, and designed to look as wonderful to give as it feels to receive.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+  },
+  {
+    name: 'TODO_HUMMICO — Coffee Lover Retreat',
+    description: 'A warm, grounding coffee escape for the early risers — comforting roasts and gentle treats brought together for unhurried mornings.',
+    price: '$00.00',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '',
+  },
+];
+
+// TODO_HUMMICO: Replace each masonry tile's `image` with a real lifestyle/product
+// photo in /public. `span` controls how tall the tile is (1 = short, 2 = tall).
+const gallery = [
+  { image: '', span: 2, caption: 'Tea ritual moment' },
+  { image: '', span: 1, caption: 'Hand-packed box' },
+  { image: '', span: 1, caption: 'Botanical detail' },
+  { image: '', span: 2, caption: 'Cozy flatlay' },
+  { image: '', span: 2, caption: 'Wrapped to gift' },
+  { image: '', span: 1, caption: 'Warm cup' },
+  { image: '', span: 1, caption: 'Self-care set' },
+  { image: '', span: 2, caption: 'Slow morning' },
+];
+---
+
+<BaseLayout title="Collections · Hummico Designs">
+  <!-- ════════════════ 1. HERO ════════════════ -->
+  <!-- TODO_HUMMICO: Replace the placeholder background on .chero-bg with the real
+       Collections hero image (calming/lifestyle, ~1920x1080). Keep the dark overlay
+       gradient in .chero-overlay for text legibility — same treatment as home/about. -->
+  <section class="chero" aria-label="Shop the Hummico collections">
+    <div class="chero-bg" data-placeholder="collections-hero-image"></div>
+    <div class="chero-overlay">
+      <p class="chero-eyebrow">Hand-curated · Made to be gifted</p>
+      <h1 class="chero-headline">Shop the<br /><span>collections.</span></h1>
+      <p class="chero-sub">
+        Herbal tea boxes, wellness gifts and quiet luxuries — each one curated by
+        hand and wrapped with care, ready to find its person.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════ 2. BEST SELLERS ════════════════ -->
+  <section class="section bestsellers" aria-label="Best sellers">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Most loved</p>
+        <h2 class="display-h2">Our <span>best sellers.</span></h2>
+        <p class="section-lead">The boxes our customers reach for again and again.</p>
+      </div>
+
+      <!-- Reusable product-card grid (4 across on desktop). -->
+      <div class="card-grid card-grid--4" data-reveal-group>
+        {bestSellers.map((p) => (
+          <article class="product-card" data-reveal>
+            <div class="product-card-media">
+              {p.image
+                ? <img src={p.image} alt={p.name} class="product-card-img" loading="lazy" />
+                : <div class="product-card-ph img-placeholder"><span>TODO_HUMMICO<br />product image</span></div>}
+            </div>
+            <div class="product-card-body">
+              <h3 class="product-card-name">{p.name}</h3>
+              <p class="product-card-desc">{p.description}</p>
+              <div class="product-card-foot">
+                <span class="product-card-price">{p.price}</span>
+                <a
+                  href={p.etsyLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="etsy-btn"
+                >Shop on Etsy</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ 3. OUR COLLECTIONS (grid + filters) ════════════════ -->
+  <section class="section collections-grid" aria-label="Our collections">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Browse everything</p>
+        <h2 class="display-h2">Our <span>collections.</span></h2>
+        <p class="section-lead">Find the right little ritual for the right person.</p>
+      </div>
+
+      <div class="card-grid card-grid--3" data-reveal-group>
+        {collectionProducts.map((p) => (
+          <article class="product-card" data-reveal>
+            <div class="product-card-media">
+              {p.image
+                ? <img src={p.image} alt={p.name} class="product-card-img" loading="lazy" />
+                : <div class="product-card-ph img-placeholder"><span>TODO_HUMMICO<br />product image</span></div>}
+              <span class="product-card-chip">{p.category}</span>
+            </div>
+            <div class="product-card-body">
+              <h3 class="product-card-name">{p.name}</h3>
+              <p class="product-card-desc">{p.description}</p>
+              <div class="product-card-foot">
+                <span class="product-card-price">{p.price}</span>
+                <a
+                  href={p.etsyLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="etsy-btn"
+                >Shop on Etsy</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ 4. FEATURED GIFTS (GSAP horizontal scroll-stack) ════════════════ -->
+  <!-- Desktop (>768px): the section pins and each card slides in from the RIGHT,
+       stacking/overlaying the previous one (GSAP ScrollTrigger).
+       Mobile (<=768px): NO scroll-hijacking — a native swipeable, scroll-snap carousel.
+       All card text is real HTML; GSAP only animates the existing cards. -->
+  <section class="featured" aria-label="Featured gifts">
+    <div class="container">
+      <div class="section-head section-head--light">
+        <p class="eyebrow">Worth the spotlight</p>
+        <h2 class="display-h2">Featured <span>gifts.</span></h2>
+        <p class="section-lead">A closer look at the pieces we are proudest of.</p>
+      </div>
+    </div>
+
+    <div class="featured-viewport" data-featured>
+      <div class="featured-stack" data-featured-stack>
+        {featured.map((p, i) => (
+          <article class="featured-card" data-featured-card>
+            <!-- LEFT: light/white info panel (noticeably lighter than the off-white bg) -->
+            <div class="featured-panel">
+              <span class="featured-index">{String(i + 1).padStart(2, '0')} / {String(featured.length).padStart(2, '0')}</span>
+              <h3 class="featured-name">{p.name}</h3>
+              <p class="featured-desc">{p.description}</p>
+              <div class="featured-foot">
+                <span class="featured-price">{p.price}</span>
+                <a
+                  href={p.etsyLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="etsy-btn"
+                >Shop on Etsy</a>
+              </div>
+            </div>
+            <!-- RIGHT: product image -->
+            <div class="featured-media">
+              {p.image
+                ? <img src={p.image} alt={p.name} class="featured-img" loading="lazy" />
+                : <div class="featured-ph img-placeholder"><span>TODO_HUMMICO<br />product image</span></div>}
+            </div>
+          </article>
+        ))}
+      </div>
+      <!-- Scroll/swipe hint -->
+      <p class="featured-hint" data-featured-hint>
+        <span class="featured-hint-desktop">Scroll to explore</span>
+        <span class="featured-hint-mobile">Swipe to explore →</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════ 5. MASONRY IMAGERY ════════════════ -->
+  <section class="section masonry-section" aria-label="From the Hummico studio">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">In the wild</p>
+        <h2 class="display-h2">From the <span>studio.</span></h2>
+        <p class="section-lead">Little moments of calm, captured.</p>
+      </div>
+
+      <!-- TODO_HUMMICO: Replace each tile background with a real photo (see `gallery` data). -->
+      <div class="masonry" data-reveal-group>
+        {gallery.map((g) => (
+          <figure class={`masonry-item masonry-item--span${g.span}`} data-reveal>
+            {g.image
+              ? <img src={g.image} alt={g.caption} class="masonry-img" loading="lazy" />
+              : <div class="masonry-ph img-placeholder"><span>TODO_HUMMICO image</span></div>}
+            <figcaption class="masonry-cap">{g.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════ 6. NEWSLETTER ════════════════ -->
+  <!-- The shared <Newsletter /> component is rendered automatically by BaseLayout,
+       directly above the shared <Footer /> — so it already sits here, above the footer.
+       (No need to import it again; doing so would render two newsletters.) -->
+</BaseLayout>
+
+<style>
+  /* ─────────── Shared type + layout helpers (match home/about) ─────────── */
+  .eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: #e491a6;
+    margin-bottom: 16px;
+  }
+  .display-h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 4.4vw, 3rem);
+    color: #225234;
+    line-height: 1.12;
+    margin: 0;
+  }
+  .display-h2 span {
+    font-style: italic;
+    font-weight: 300;
+    color: #e491a6;
+  }
+  .section-lead {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+    line-height: 1.7;
+    color: #225234;
+    opacity: 0.8;
+    margin: 14px auto 0;
+    max-width: 46ch;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .section { background-color: #faf6f0; padding: 100px 0; }
+  .section-head { text-align: center; margin-bottom: 56px; }
+  .section-head--light .display-h2 { color: #faf6f0; }
+  .section-head--light .section-lead { color: #faf6f0; opacity: 0.78; }
+
+  /* Shared "Shop on Etsy" button (green pill, brand standard) */
+  .etsy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #225234;
+    color: #faf6f0;
+    padding: 12px 26px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  }
+  .etsy-btn:hover {
+    background-color: #2d6b47;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(34, 82, 52, 0.22);
+  }
+
+  /* ─────────── 1. HERO ─────────── */
+  .chero {
+    position: relative;
+    width: 100%;
+    margin-top: 160px; /* clears the fixed topbar + transparent navbar, like home/about */
+    min-height: calc(76vh - 160px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .chero-bg {
+    position: absolute;
+    inset: 0;
+    background-color: #225234;
+    /* Placeholder brand gradient — replace with the real photo (see TODO above). */
+    background-image:
+      radial-gradient(circle at 24% 28%, rgba(228,145,166,0.32) 0%, transparent 46%),
+      radial-gradient(circle at 80% 76%, rgba(45,107,71,0.55) 0%, transparent 52%),
+      linear-gradient(150deg, #1c4429 0%, #225234 45%, #2d6b47 100%);
+    background-size: cover;
+    background-position: center;
+  }
+  .chero-overlay {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px;
+    width: 100%;
+    min-height: calc(76vh - 160px);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.52) 100%);
+  }
+  .chero-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #e491a6;
+    font-size: clamp(0.6rem, 1.2vw, 0.78rem);
+    margin-bottom: 20px;
+  }
+  .chero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1.08;
+    font-size: clamp(2.6rem, 6.4vw, 5.6rem);
+    margin-bottom: 10px;
+    max-width: 900px;
+  }
+  .chero-headline span { font-style: normal; font-weight: 600; color: #f5e8d8; }
+  .chero-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    color: rgba(255,255,255,0.82);
+    font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+    letter-spacing: 0.04em;
+    margin-top: 16px;
+    max-width: 520px;
+    line-height: 1.8;
+  }
+
+  /* ─────────── Reusable PRODUCT CARD (Best Sellers + Our Collections) ─────────── */
+  .card-grid {
+    display: grid;
+    gap: 30px;
+  }
+  .card-grid--4 { grid-template-columns: repeat(4, 1fr); }
+  .card-grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid rgba(34, 82, 52, 0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 14px 40px rgba(34, 82, 52, 0.06);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 26px 56px rgba(34, 82, 52, 0.14);
+  }
+  .product-card-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .product-card-img,
+  .product-card-ph {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .product-card:hover .product-card-img { transform: scale(1.05); }
+  .product-card-img { transition: transform 0.6s ease; }
+  .product-card-ph {
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    line-height: 1.6;
+    opacity: 0.65;
+  }
+  .product-card-chip {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 0.6rem;
+    color: #225234;
+    background-color: rgba(250, 246, 240, 0.92);
+    backdrop-filter: blur(4px);
+    border-radius: 20px;
+    padding: 5px 12px;
+  }
+  .product-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 24px 24px 26px;
+  }
+  .product-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    color: #225234;
+    margin: 0 0 10px;
+  }
+  .product-card-desc {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #225234;
+    opacity: 0.82;
+    margin: 0 0 22px;
+    flex: 1;
+  }
+  .product-card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+  }
+  .product-card-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #e491a6;
+  }
+
+  /* ─────────── 4. FEATURED GIFTS ─────────── */
+  .featured {
+    background-color: #225234;
+    padding: 100px 0;
+    overflow: hidden;
+    /* Subtle brand atmosphere behind the dark panel */
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(228,145,166,0.18) 0%, transparent 40%),
+      radial-gradient(circle at 88% 82%, rgba(45,107,71,0.5) 0%, transparent 45%);
+  }
+  .featured-viewport { position: relative; }
+
+  /* Base / mobile-first: native swipeable carousel (NO scroll hijack).
+     Each card is full-width (with a small side margin), so only ONE card is shown
+     at a time and the next one sits fully off-screen — nothing peeks. Swipe to advance. */
+  .featured-stack {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 16px 8px;
+    scrollbar-width: none;
+  }
+  .featured-stack::-webkit-scrollbar { display: none; }
+
+  .featured-card {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.28);
+  }
+  /* LEFT panel — fdffff is intentionally lighter/cleaner than the #faf6f0 page bg */
+  .featured-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 36px 32px;
+  }
+  .featured-index {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: #e491a6;
+    margin-bottom: 14px;
+  }
+  .featured-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+    line-height: 1.14;
+    color: #225234;
+    margin: 0 0 16px;
+  }
+  .featured-desc {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    line-height: 1.8;
+    color: #225234;
+    opacity: 0.85;
+    margin: 0 0 26px;
+    max-width: 44ch;
+  }
+  .featured-foot {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .featured-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.7rem;
+    color: #e491a6;
+  }
+  .featured-media { position: relative; min-height: 240px; }
+  .featured-img,
+  .featured-ph {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .featured-ph {
+    min-height: 240px;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 0.62rem;
+    line-height: 1.6;
+    opacity: 0.65;
+  }
+  .featured-hint {
+    text-align: center;
+    margin: 28px 0 0;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    color: rgba(250, 246, 240, 0.7);
+  }
+  .featured-hint-desktop { display: none; }
+  .featured-hint-mobile { display: inline; }
+
+  /* Desktop (>768px) WITH JS + motion (.js-featured, added by the script): cards become
+     wide rectangles (image RIGHT, light panel LEFT) and are absolutely stacked at the
+     SAME centered position inside a pinned, overflow-clipped frame. An incoming card
+     waits exactly one card-width to the right (clipped → invisible) and slides in to
+     FULLY overlay the current one. Without JS / reduced motion the carousel above is
+     kept as a graceful fallback. */
+  @media (min-width: 769px) {
+    .featured-viewport.is-pinned {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+      /* Fill the screen and vertically center the stack inside it. While pinned
+         (from top top) the wrapper is locked to the viewport and the stack sits
+         centered within it, so the cards stay VERTICALLY CENTERED for the whole
+         horizontal scroll — only x ever changes, no upward drift. */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    /* Hint pinned to the bottom so it never affects the stack's vertical centering. */
+    .featured-viewport.is-pinned .featured-hint {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 28px;
+      margin: 0;
+    }
+    .featured-viewport.is-pinned .featured-stack {
+      position: relative;
+      display: block;
+      overflow: hidden;                 /* clips any card not yet in its centered spot */
+      height: 62vh;
+      min-height: 460px;
+      padding: 0;
+      border-radius: 24px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.28); /* shadow on the frame so it isn't clipped */
+    }
+    .featured-viewport.is-pinned .featured-card {
+      position: absolute;
+      inset: 0;
+      flex-direction: row;
+      flex: initial;
+      border-radius: 0;                 /* rounded corners handled by the clipping frame */
+      box-shadow: none;
+    }
+    .featured-viewport.is-pinned .featured-panel { flex: 0 0 45%; padding: clamp(36px, 4vw, 60px); }
+    .featured-viewport.is-pinned .featured-media { flex: 1; min-height: 0; }
+    .featured-viewport.is-pinned .featured-ph { height: 100%; min-height: 0; }
+    .featured-viewport.is-pinned .featured-hint-desktop { display: inline; }
+    .featured-viewport.is-pinned .featured-hint-mobile { display: none; }
+  }
+
+  /* ─────────── 5. MASONRY ─────────── */
+  .masonry {
+    column-count: 3;
+    column-gap: 20px;
+  }
+  .masonry-item {
+    position: relative;
+    break-inside: avoid;
+    margin: 0 0 20px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 16px 44px rgba(34, 82, 52, 0.1);
+  }
+  .masonry-img,
+  .masonry-ph {
+    width: 100%;
+    display: block;
+  }
+  .masonry-item--span1 .masonry-ph { aspect-ratio: 4 / 3; }
+  .masonry-item--span2 .masonry-ph { aspect-ratio: 3 / 4; }
+  .masonry-ph {
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 0.62rem;
+    opacity: 0.6;
+  }
+  .masonry-cap {
+    position: absolute;
+    left: 16px;
+    bottom: 14px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    font-size: 0.72rem;
+    color: #faf6f0;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Reveal animation note: the hidden start-state is set in JS via gsap.from(), so
+     content stays fully visible without JS and there is no scoped-CSS dependency. */
+
+  /* ─────────── Responsive ─────────── */
+  @media (max-width: 1024px) {
+    .card-grid--4 { grid-template-columns: repeat(2, 1fr); }
+    .card-grid--3 { grid-template-columns: repeat(2, 1fr); }
+    .masonry { column-count: 2; }
+  }
+  @media (max-width: 768px) {
+    .section { padding: 70px 0; }
+    .featured { padding: 70px 0; }
+    .section-head { margin-bottom: 40px; }
+    .chero { margin-top: 130px; min-height: calc(64vh - 130px); }
+    .chero-overlay { min-height: calc(64vh - 130px); padding: 64px 22px; }
+    .chero-eyebrow { letter-spacing: 0.22em; }
+
+    /* Mobile cards: IMAGE on top, text/price/Etsy below (standard product-card
+       stacking). order:-1 lifts the media above the panel in the column flow, and
+       a fixed height keeps the image from becoming a huge empty block. */
+    .featured-media { order: -1; min-height: 0; height: 220px; }
+    .featured-ph { min-height: 0; height: 220px; }
+  }
+  @media (max-width: 560px) {
+    .card-grid--4,
+    .card-grid--3 { grid-template-columns: 1fr; }
+    .masonry { column-count: 1; }
+    .product-card-name { font-size: 1.3rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-card,
+    .product-card-img,
+    .etsy-btn { transition: none; }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── 4. FEATURED GIFTS — horizontal scroll-stack (desktop only) ──────────────
+  // Mobile keeps the native scroll-snap carousel from CSS (no JS, no hijack).
+  const viewport = document.querySelector<HTMLElement>('[data-featured]');
+  const stack = document.querySelector<HTMLElement>('[data-featured-stack]');
+
+  if (viewport && stack && !reduce) {
+    // Enable the desktop pinned-stack layout. The class goes on an in-component element
+    // (not <html>) so Astro's scoped styles match it; no-JS / reduced-motion users keep
+    // the plain swipe carousel as a fallback.
+    viewport.classList.add('is-pinned');
+
+    const cards = gsap.utils.toArray<HTMLElement>('[data-featured-card]', stack);
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 769px)', () => {
+      // Every card sits at the SAME centered spot (inset:0). Later cards start exactly
+      // one card-width to the right (xPercent:100) — that's right at the clipped frame's
+      // edge, so nothing peeks — and ascend in z-index so each new arrival layers ABOVE
+      // the previous one.
+      gsap.set(cards, { zIndex: (i: number) => i + 1, xPercent: 0 });
+      gsap.set(cards.slice(1), { xPercent: 100 });
+
+      // Pin from 'top top': the viewport wrapper is 100vh, so once its top reaches the
+      // top of the screen it locks in place filling the viewport, and the stack stays
+      // flex-centered within it for the entire scrub. This keeps the cards vertically
+      // centered the whole time (no upward drift) — only x animates below.
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: viewport,
+          start: 'top top',
+          end: () => `+=${(cards.length - 1) * window.innerHeight * 0.9}`,
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // Each later card slides in from the right to fully overlay the previous one.
+      cards.forEach((card, i) => {
+        if (i === 0) return;
+        tl.to(card, { xPercent: 0, ease: 'none' }, i - 1);
+      });
+
+      return () => gsap.set(cards, { clearProps: 'transform,zIndex' });
+    });
+  }
+
+  // ── Gentle scroll reveals for product cards + masonry (enhancement only) ─────
+  // Content is real HTML and fully visible without JS; we only add the class that
+  // hides-then-reveals once we know GSAP is running and motion is allowed.
+  if (!reduce) {
+    gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 28,
+        duration: 0.7,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%' },
+      });
+    });
+  }
+</script>
