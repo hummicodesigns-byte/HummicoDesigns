@@ -1,0 +1,294 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const ETSY_SHOP = 'https://www.etsy.com/shop/HummicoDesigns';
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+// Per-post hero background: use the post image when set, otherwise the brand gradient placeholder.
+const heroStyle = post.data.image ? `background-image:url('${post.data.image}')` : '';
+---
+
+<BaseLayout title={`${post.data.title} · Hummico Designs`} description={post.data.description}>
+  <!-- ════════════════ POST HERO ════════════════ -->
+  <!-- TODO_HUMMICO: each post's hero image comes from its frontmatter `image` field.
+       While empty, the brand gradient placeholder below is shown. -->
+  <section class="phero" aria-label={post.data.title}>
+    <div class={`phero-bg${post.data.image ? '' : ' phero-bg--placeholder'}`} style={heroStyle}></div>
+    <div class="phero-overlay">
+      <a href="/blog" class="phero-back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        The Journal
+      </a>
+      <p class="phero-date">{fmtDate(post.data.pubDate)}</p>
+      <h1 class="phero-title">{post.data.title}</h1>
+      <p class="phero-desc">{post.data.description}</p>
+    </div>
+  </section>
+
+  <!-- ════════════════ ARTICLE BODY ════════════════ -->
+  <article class="article">
+    <div class="article-body">
+      <Content />
+    </div>
+
+    <!-- ════════════════ CLOSING CTA ════════════════ -->
+    <aside class="post-cta" aria-label="Explore the collections">
+      <p class="post-cta-eyebrow">From our shelves to yours</p>
+      <h2 class="post-cta-title">Ready to <span>brew your own?</span></h2>
+      <p class="post-cta-body">
+        Explore our hand-blended teas and gift boxes — curated and packed by hand in Houston.
+      </p>
+      <div class="post-cta-buttons">
+        <a href="/collections" class="cta-btn cta-btn--solid">Shop the Collections</a>
+        <a href={ETSY_SHOP} target="_blank" rel="noopener noreferrer" class="cta-btn cta-btn--ghost">Shop on Etsy</a>
+      </div>
+    </aside>
+  </article>
+
+  <!-- The shared <Newsletter /> is rendered by BaseLayout, above the shared <Footer />. -->
+</BaseLayout>
+
+<style>
+  /* ── POST HERO ── */
+  .phero {
+    position: relative;
+    width: 100%;
+    margin-top: 160px;
+    min-height: calc(62vh - 160px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .phero-bg {
+    position: absolute;
+    inset: 0;
+    background-color: #225234;
+    background-size: cover;
+    background-position: center;
+  }
+  /* Brand gradient placeholder shown until a real per-post image is added. */
+  .phero-bg--placeholder {
+    background-image:
+      radial-gradient(circle at 24% 28%, rgba(228,145,166,0.32) 0%, transparent 46%),
+      radial-gradient(circle at 80% 76%, rgba(45,107,71,0.55) 0%, transparent 52%),
+      linear-gradient(150deg, #1c4429 0%, #225234 45%, #2d6b47 100%);
+  }
+  .phero-overlay {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px;
+    width: 100%;
+    min-height: calc(62vh - 160px);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.4) 55%, rgba(0,0,0,0.58) 100%);
+  }
+  .phero-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.78);
+    text-decoration: none;
+    margin-bottom: 22px;
+    transition: color 0.25s ease;
+  }
+  .phero-back:hover { color: #e491a6; }
+  .phero-date {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #e491a6;
+    font-size: clamp(0.6rem, 1.2vw, 0.72rem);
+    margin-bottom: 16px;
+  }
+  .phero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.1;
+    font-size: clamp(2.1rem, 5vw, 3.8rem);
+    max-width: 900px;
+    margin: 0;
+  }
+  .phero-desc {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    color: rgba(255,255,255,0.84);
+    font-size: clamp(0.85rem, 1.4vw, 1.02rem);
+    letter-spacing: 0.03em;
+    margin-top: 18px;
+    max-width: 600px;
+    line-height: 1.8;
+  }
+
+  /* ── ARTICLE ── */
+  .article {
+    background-color: #faf6f0;
+    padding: 90px 20px 100px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* Markdown-rendered content is injected, so target it with :global() under the
+     scoped .article-body wrapper. */
+  .article-body :global(p) {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 1.05rem;
+    line-height: 1.95;
+    color: #225234;
+    opacity: 0.9;
+    margin: 0 0 22px;
+  }
+  .article-body :global(h2) {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    line-height: 1.18;
+    color: #225234;
+    margin: 46px 0 14px;
+  }
+  .article-body :global(h3) {
+    font-family: 'Jost', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    font-size: 1.05rem;
+    color: #2d6b47;
+    margin: 30px 0 12px;
+  }
+  .article-body :global(ul),
+  .article-body :global(ol) {
+    margin: 0 0 24px;
+    padding-left: 1.3em;
+  }
+  .article-body :global(li) {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 1.02rem;
+    line-height: 1.8;
+    color: #225234;
+    opacity: 0.9;
+    margin-bottom: 8px;
+  }
+  .article-body :global(li)::marker { color: #e491a6; }
+  .article-body :global(strong) { font-weight: 600; opacity: 1; }
+  .article-body :global(a) {
+    color: #225234;
+    text-decoration: underline;
+    text-decoration-color: #e491a6;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+  .article-body :global(a:hover) { color: #e491a6; }
+  .article-body :global(em) { color: #225234; }
+  /* The horizontal rule before each disclaimer + the disclaimer paragraph after it */
+  .article-body :global(hr) {
+    border: none;
+    border-top: 1px solid rgba(34, 82, 52, 0.16);
+    margin: 40px 0 26px;
+  }
+  .article-body :global(hr + p) {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    opacity: 0.7;
+    background-color: rgba(34, 82, 52, 0.04);
+    border-left: 3px solid #e491a6;
+    border-radius: 0 10px 10px 0;
+    padding: 16px 18px;
+  }
+
+  /* ── CLOSING CTA ── */
+  .post-cta {
+    margin-top: 56px;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid rgba(34, 82, 52, 0.08);
+    border-top: 3px solid #e491a6;
+    border-radius: 22px;
+    padding: clamp(34px, 5vw, 56px) 28px;
+    box-shadow: 0 24px 60px rgba(34, 82, 52, 0.07);
+  }
+  .post-cta-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    color: #e491a6;
+    margin: 0 0 14px;
+  }
+  .post-cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+    color: #225234;
+    line-height: 1.14;
+    margin: 0;
+  }
+  .post-cta-title span { font-style: italic; font-weight: 300; color: #e491a6; }
+  .post-cta-body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #225234;
+    opacity: 0.85;
+    max-width: 46ch;
+    margin: 14px auto 28px;
+  }
+  .post-cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .cta-btn {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, color 0.3s ease;
+  }
+  .cta-btn--solid {
+    background-color: #225234;
+    color: #faf6f0;
+    box-shadow: 0 10px 26px rgba(34, 82, 52, 0.2);
+  }
+  .cta-btn--solid:hover { background-color: #2d6b47; transform: translateY(-2px); }
+  .cta-btn--ghost {
+    background-color: transparent;
+    color: #225234;
+    border: 1.5px solid rgba(34, 82, 52, 0.3);
+  }
+  .cta-btn--ghost:hover { border-color: #e491a6; color: #e491a6; transform: translateY(-2px); }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .phero { margin-top: 130px; min-height: calc(52vh - 130px); }
+    .phero-overlay { min-height: calc(52vh - 130px); padding: 56px 22px; }
+    .article { padding: 64px 20px 72px; }
+    .article-body :global(p) { font-size: 1rem; }
+  }
+  @media (max-width: 560px) {
+    .post-cta-buttons .cta-btn { width: 100%; text-align: center; }
+  }
+</style>
