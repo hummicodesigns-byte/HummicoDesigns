@@ -1,11 +1,13 @@
 ---
 ---
 <div
+  id="topbar"
   class="topbar"
   style="background-color:#225234;padding:10px 20px;text-align:center;position:relative;z-index:1000;"
 >
   <p style="color:#fff;font-weight:500;font-size:0.9rem;">
-    4 Days Left ! | <a
+    <span id="topbar-msg">4 Days Left !</span> | <a
+      id="topbar-link"
       href="https://www.etsy.com/listing/4506389580/lavender-coffee-retreat-box-goat-milk?sr_prefetch=1&pf_from=shop_home&ref=shop_home_active_4&pro=1&logging_key=a9f6ea38eecda6778f44229c40ff465107390e28%3A4506389580"
       target="_blank"
       rel="noopener noreferrer"
@@ -29,3 +31,91 @@
     }
   }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const CSV_URL =
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vTTDhZmz81riJzAaV23ZD3m875DlmzfYi5WdUevaiJfTSdKekBGIyLzPbbn14quQzO6Gbp-V3JQi303/pub?output=csv";
+
+    // Parse a CSV string into rows of fields, handling quoted fields
+    // (which may contain commas, escaped quotes "", and newlines).
+    function parseCSV(text: string): string[][] {
+      const rows = [];
+      let row = [];
+      let field = "";
+      let inQuotes = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+
+        if (inQuotes) {
+          if (char === '"') {
+            if (text[i + 1] === '"') {
+              field += '"';
+              i++;
+            } else {
+              inQuotes = false;
+            }
+          } else {
+            field += char;
+          }
+        } else if (char === '"') {
+          inQuotes = true;
+        } else if (char === ",") {
+          row.push(field);
+          field = "";
+        } else if (char === "\n" || char === "\r") {
+          // Handle CRLF as a single newline.
+          if (char === "\r" && text[i + 1] === "\n") i++;
+          row.push(field);
+          field = "";
+          rows.push(row);
+          row = [];
+        } else {
+          field += char;
+        }
+      }
+
+      // Push the final field/row if there's trailing content.
+      if (field !== "" || row.length > 0) {
+        row.push(field);
+        rows.push(row);
+      }
+
+      return rows;
+    }
+
+    (async () => {
+      try {
+        const res = await fetch(CSV_URL, { cache: "no-store" });
+        if (!res.ok) return; // keep hardcoded fallback
+
+        const text = await res.text();
+        const rows = parseCSV(text);
+
+        // Row 1 is headers; row 2 (index 1) is the data row.
+        const data = rows[1];
+        if (!data) return; // keep hardcoded fallback
+
+        const message = (data[0] || "").trim();
+        const linkText = (data[1] || "").trim();
+        const linkUrl = (data[2] || "").trim();
+        const active = (data[3] || "").toLowerCase().trim();
+
+        const topbar = document.getElementById("topbar");
+        if (active === "no") {
+          if (topbar) topbar.style.display = "none";
+          return;
+        }
+
+        const msgEl = document.getElementById("topbar-msg");
+        const linkEl = document.getElementById("topbar-link");
+        if (msgEl && message) msgEl.textContent = message;
+        if (linkEl && linkText) linkEl.textContent = linkText;
+        if (linkEl && linkUrl) linkEl.setAttribute("href", linkUrl);
+      } catch (e) {
+        // Network/parse error: keep the hardcoded fallback values.
+      }
+    })();
+  });
+</script>

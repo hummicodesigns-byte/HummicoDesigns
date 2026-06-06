@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { breadcrumbSchema } from '../lib/seo';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CONTACT PAGE
@@ -14,9 +15,20 @@ const EMAIL = 'Hummicodesigns@gmail.com';
 const INSTAGRAM = 'https://www.instagram.com/hummico_designs/';
 const ETSY = 'https://www.etsy.com/shop/HummicoDesigns';
 const PINTEREST = 'https://www.pinterest.com/hummicodesigns/';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Contact', path: '/contact/' },
+  ]),
+];
 ---
 
-<BaseLayout title="Contact · Hummico Designs">
+<BaseLayout
+  title="Contact Hummico Designs — Houston, TX"
+  description="Have a question, custom order or just a hello? Reach out to Hummico Designs, a sister-owned herbal tea gift studio based in Houston, TX — we read every message ourselves."
+  schemas={schemas}
+>
   <!-- ════════════════ 1. HERO ════════════════ -->
   <!-- TODO_HUMMICO: Replace the placeholder background on .chero-bg with the real
        Contact hero image (calming/lifestyle, ~1920x1080). Keep the dark overlay
@@ -216,12 +228,12 @@ const PINTEREST = 'https://www.pinterest.com/hummicodesigns/';
   .chero-bg {
     position: absolute;
     inset: 0;
+    /* Solid brand-green fallback shows through if an image is missing (no broken-image gray). */
     background-color: #225234;
-    /* Placeholder brand gradient — replace with the real photo (see TODO above). */
-    background-image:
-      radial-gradient(circle at 24% 28%, rgba(228,145,166,0.32) 0%, transparent 46%),
-      radial-gradient(circle at 80% 76%, rgba(45,107,71,0.55) 0%, transparent 52%),
-      linear-gradient(150deg, #1c4429 0%, #225234 45%, #2d6b47 100%);
+    /* TODO_HUMMICO: add the real Contact hero images to /public.
+       Desktop: /hero-contact.jpg  ·  Mobile (<=768px): /hero-contact-mobile.jpg
+       (desktop ~1920x1080 landscape; mobile a portrait crop). Mobile swap is in the media query below. */
+    background-image: url('/hero-land.png');
     background-size: cover;
     background-position: center;
   }
@@ -236,7 +248,7 @@ const PINTEREST = 'https://www.pinterest.com/hummicodesigns/';
     padding: 80px 24px;
     width: 100%;
     min-height: calc(70vh - 160px);
-    background: linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.52) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.30) 100%);
   }
   .chero-eyebrow {
     font-family: 'Jost', sans-serif;
@@ -446,6 +458,8 @@ const PINTEREST = 'https://www.pinterest.com/hummicodesigns/';
     .map-section { padding-top: 30px; }
     .chero { margin-top: 130px; min-height: calc(58vh - 130px); }
     .chero-overlay { min-height: calc(58vh - 130px); padding: 60px 22px; }
+    /* Swap to the portrait Contact hero image on phones (matches the homepage pattern). */
+    .chero-bg { background-image: url('/hero-mobile.png'); }
     .chero-eyebrow { letter-spacing: 0.22em; }
     .map-frame { height: 340px; }
   }

@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { breadcrumbSchema, blogPostingSchema } from '../../lib/seo';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -16,14 +17,30 @@ const fmtDate = (d: Date) =>
 
 // Per-post hero background: use the post image when set, otherwise the brand gradient placeholder.
 const heroStyle = post.data.image ? `background-image:url('${post.data.image}')` : '';
+
+const postPath = `/blog/${post.id}/`;
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'The Hummico Journal', path: '/blog/' },
+    { name: post.data.title, path: postPath },
+  ]),
+  blogPostingSchema({
+    title: post.data.title,
+    description: post.data.description,
+    image: post.data.image,
+    datePublished: post.data.pubDate,
+    path: postPath,
+  }),
+];
 ---
 
-<BaseLayout title={`${post.data.title} · Hummico Designs`} description={post.data.description}>
+<BaseLayout title={post.data.title} description={post.data.description} ogType="article" image={post.data.image || '/og-default.jpg'} schemas={schemas}>
   <!-- ════════════════ POST HERO ════════════════ -->
   <!-- TODO_HUMMICO: each post's hero image comes from its frontmatter `image` field.
        While empty, the brand gradient placeholder below is shown. -->
   <section class="phero" aria-label={post.data.title}>
-    <div class={`phero-bg${post.data.image ? '' : ' phero-bg--placeholder'}`} style={heroStyle}></div>
+    <div class={`phero-bg${post.data.image ? '' : 'https://www.instagram.com/p/DY4pQYMOcDN/'}`} style={heroStyle}></div>
     <div class="phero-overlay">
       <a href="/blog" class="phero-back">
         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>

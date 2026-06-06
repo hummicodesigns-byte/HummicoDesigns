@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { breadcrumbSchema, productSchema } from '../lib/seo';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // COLLECTIONS PAGE — placeholder data
@@ -58,51 +59,100 @@ const collectionProducts = [
   {
     name: 'TODO_HUMMICO — Garden Tea Box',
     description: 'A bright, floral blend collection for slow afternoons — gentle, fragrant, and made for lingering over a warm cup.',
-    price: '$00.00',
+    price: '$34.36',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
-    category: 'Tea Ritual Boxes',
+    image: 'herbal3.avif',
+    category: 'Organic Herbal Tea Set',
   },
   {
     name: 'TODO_HUMMICO — Wellness Gift Set',
     description: 'A caring little collection of comforts, curated to tell someone they are thought of and quietly looked after.',
-    price: '$00.00',
+    price: '$34.36',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
+    image: 'morrocan.avif',
     category: 'Wellness Gifts',
   },
   {
     name: 'TODO_HUMMICO — Spa Day Set',
     description: 'Soft, restorative self-care treats brought together for an at-home spa moment — calm, simple, and indulgent.',
-    price: '$00.00',
+    price: '$22.36',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
-    category: 'Self-Care Sets',
+    image: 'herbal2.avif',
+    category: 'Tea Bag Bundle Gift Box',
   },
   {
     name: 'TODO_HUMMICO — Morning Coffee Box',
     description: 'A warm, grounding coffee collection for unhurried mornings, hand-packed for people who savour the first cup.',
-    price: '$00.00',
+    price: '$34.36',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
-    category: 'Coffee Collection',
+    image: 'lavender.avif',
+    category: 'Coffee Tea Bundle',
   },
   {
     name: 'TODO_HUMMICO — Restful Night Box',
     description: 'A gentle wind-down collection of soothing botanicals, chosen to help close the day softly and slowly.',
-    price: '$00.00',
+    price: '$22.36',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
-    category: 'Tea Ritual Boxes',
+    image: 'herbalbest.avif',
+    category: 'Tea Bag Bundle Gift Box',
   },
   {
     name: 'TODO_HUMMICO — Thinking of You Set',
     description: 'A heartfelt little gift of warm sips and small comforts — a quiet way to say someone matters to you.',
-    price: '$00.00',
+    price: '$34.36',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
-    category: 'Wellness Gifts',
+    image: 'herbal tea box.avif',
+    category: 'Organic Herbal Tea Set',
   },
+  {
+    name: 'TODO_HUMMICO — Thinking of You Set',
+    description: 'A heartfelt little gift of warm sips and small comforts — a quiet way to say someone matters to you.',
+    price: '$26.36',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: 'collect7.jpg',
+    category: 'Tea Bag Bundle Gift Box',
+  },
+  {
+    name: 'TODO_HUMMICO — Thinking of You Set',
+    description: 'A heartfelt little gift of warm sips and small comforts — a quiet way to say someone matters to you.',
+    price: '$34.36',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: 'collect8.jpg',
+    category: 'Coffee Tea Bundle',
+  },
+  {
+    name: 'TODO_HUMMICO — Thinking of You Set',
+    description: 'A heartfelt little gift of warm sips and small comforts — a quiet way to say someone matters to you.',
+    price: '$31.16',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: 'collect9.jpg',
+    category: 'Tea Bag Bundle Gift Box',
+  },
+  {
+    name: 'TODO_HUMMICO — Thinking of You Set',
+    description: 'A heartfelt little gift of warm sips and small comforts — a quiet way to say someone matters to you.',
+    price: '$27.96',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: 'collect10.jpg',
+    category: 'Organic Fruit Powder Set',
+  },
+  {
+    name: 'TODO_HUMMICO — Thinking of You Set',
+    description: 'A heartfelt little gift of warm sips and small comforts — a quiet way to say someone matters to you.',
+    price: '$38.36',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: 'collect11.webp',
+    category: 'Organic Herbal Tea Set',
+  },
+  {
+    name: 'TODO_HUMMICO — Thinking of You Set',
+    description: 'A heartfelt little gift of warm sips and small comforts — a quiet way to say someone matters to you.',
+    price: '$18.36',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: 'collect12.webp',
+    category: 'Tea Refill Set',
+  },
+
 ];
 
 // TODO_HUMMICO: Replace these 4 placeholder featured products (each shows a light
@@ -141,18 +191,43 @@ const featured = [
 // TODO_HUMMICO: Replace each masonry tile's `image` with a real lifestyle/product
 // photo in /public. `span` controls how tall the tile is (1 = short, 2 = tall).
 const gallery = [
-  { image: '', span: 2, caption: 'Tea ritual moment' },
-  { image: '', span: 1, caption: 'Hand-packed box' },
-  { image: '', span: 1, caption: 'Botanical detail' },
-  { image: '', span: 2, caption: 'Cozy flatlay' },
-  { image: '', span: 2, caption: 'Wrapped to gift' },
-  { image: '', span: 1, caption: 'Warm cup' },
-  { image: '', span: 1, caption: 'Self-care set' },
-  { image: '', span: 2, caption: 'Slow morning' },
+  { image: 'blog2.jpg', span: 2, caption: 'Tea ritual moment' },
+  { image: 'gallery1.jpg', span: 1, caption: 'Wrapped To Gift' },
+  { image: 'gallery2.jpg', span: 1, caption: 'Botanical detail' },
+  { image: 'blog3.jpg', span: 2, caption: 'Cozy flatlay' },
+  { image: 'gallery3.jpg', span: 2, caption: 'Warm cup' },
+  { image: 'gallery4.jpg', span: 1, caption: 'Self-care set' },
+  { image: 'morrocan.avif', span: 1, caption: 'Hand-packed box' },
+  { image: 'philo1.jpg', span: 2, caption: 'Slow morning' },
+];
+
+// Structured data: breadcrumb + one Product per Best Sellers card.
+// TODO_HUMMICO: these Product schemas mirror the `bestSellers` placeholder cards above
+// (names, descriptions, prices and Etsy URLs are all stand-ins). Revisit when real product
+// data lands. No aggregateRating/review is emitted yet — adding fake ratings risks a Google
+// manual penalty, so those will be added only once real Etsy reviews are in.
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Collections', path: '/collections/' },
+  ]),
+  ...bestSellers.map((p) =>
+    productSchema({
+      name: p.name,
+      description: p.description,
+      image: p.image,
+      url: p.etsyLink,
+      price: p.price,
+    })
+  ),
 ];
 ---
 
-<BaseLayout title="Collections · Hummico Designs">
+<BaseLayout
+  title="Tea Ritual Boxes & Wellness Gift Sets — Hummico Collections"
+  description="Explore Hummico's organic herbal tea boxes, wellness gifts, coffee retreat sets and self-care bundles — hand-packed in Houston, TX and available to shop on Etsy."
+  schemas={schemas}
+>
   <!-- ════════════════ 1. HERO ════════════════ -->
   <!-- TODO_HUMMICO: Replace the placeholder background on .chero-bg with the real
        Collections hero image (calming/lifestyle, ~1920x1080). Keep the dark overlay
@@ -399,12 +474,12 @@ const gallery = [
   .chero-bg {
     position: absolute;
     inset: 0;
+    /* Solid brand-green fallback shows through if an image is missing (no broken-image gray). */
     background-color: #225234;
-    /* Placeholder brand gradient — replace with the real photo (see TODO above). */
-    background-image:
-      radial-gradient(circle at 24% 28%, rgba(228,145,166,0.32) 0%, transparent 46%),
-      radial-gradient(circle at 80% 76%, rgba(45,107,71,0.55) 0%, transparent 52%),
-      linear-gradient(150deg, #1c4429 0%, #225234 45%, #2d6b47 100%);
+    /* TODO_HUMMICO: add the real Collections hero images to /public.
+       Desktop: /hero-collections.jpg  ·  Mobile (<=768px): /hero-collections-mobile.jpg
+       (desktop ~1920x1080 landscape; mobile a portrait crop). Mobile swap is in the media query below. */
+    background-image: url('/hero-3land.png');
     background-size: cover;
     background-position: center;
   }
@@ -419,7 +494,7 @@ const gallery = [
     padding: 80px 24px;
     width: 100%;
     min-height: calc(76vh - 160px);
-    background: linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.52) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.40) 0%, rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.20) 100%);
   }
   .chero-eyebrow {
     font-family: 'Jost', sans-serif;
@@ -777,6 +852,8 @@ const gallery = [
     .section-head { margin-bottom: 40px; }
     .chero { margin-top: 130px; min-height: calc(64vh - 130px); }
     .chero-overlay { min-height: calc(64vh - 130px); padding: 64px 22px; }
+    /* Swap to the portrait Collections hero image on phones (matches the homepage pattern). */
+    .chero-bg { background-image: url('/hero-3mobile.png'); }
     .chero-eyebrow { letter-spacing: 0.22em; }
 
     /* Mobile cards: IMAGE on top, text/price/Etsy below (standard product-card

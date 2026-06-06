@@ -2,7 +2,7 @@
 title: "Calming Herbal Teas & What People Love Them For"
 description: "A claim-free guide to chamomile, lavender, rose, peppermint, hibiscus and rooibos — and the Hummico blends they live in, including Persian Herbal Garden, Moroccan and English Garden."
 pubDate: 2026-05-26
-image: "" # TODO_HUMMICO: add hero/card image path in /public (e.g. /blog/calming-teas.jpg)
+image: "/blog2.jpg" # TODO_HUMMICO: add hero/card image path in /public (e.g. /blog/calming-teas.jpg)
 excerpt: "Chamomile, lavender, rose, peppermint and more — the botanicals people reach for most, and the hand-blended Hummico teas they belong to."
 ---
 

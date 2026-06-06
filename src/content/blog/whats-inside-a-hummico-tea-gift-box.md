@@ -2,7 +2,7 @@
 title: "What's Inside a Hummico Tea Gift Box"
 description: "A guide to what goes into a Hummico tea gift box — hand-blended loose-leaf teas, honey sticks and gentle self-care touches, all curated and packed by hand in Houston, Texas."
 pubDate: 2026-06-02
-image: "" # TODO_HUMMICO: add hero/card image path in /public (e.g. /blog/gift-box.jpg)
+image: "/blog1.jpg" # TODO_HUMMICO: add hero/card image path in /public (e.g. /blog/gift-box.jpg)
 excerpt: "Hand-blended teas, honey sticks and gentle self-care touches — a look at what we curate into every box, and how to choose the right one."
 ---
 

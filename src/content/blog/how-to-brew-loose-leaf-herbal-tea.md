@@ -2,7 +2,7 @@
 title: "How to Brew Loose-Leaf Herbal Tea"
 description: "A simple, claim-free step-by-step guide to brewing loose-leaf herbal and botanical teas — water temperatures, steeping times, and gentle tips from Hummico Designs in Houston."
 pubDate: 2026-05-12
-image: "" # TODO_HUMMICO: add hero/card image path in /public (e.g. /blog/brewing.jpg)
+image: "/blog3.jpg" # TODO_HUMMICO: add hero/card image path in /public (e.g. /blog/brewing.jpg)
 excerpt: "Water temperatures, steeping times, and easy steps for getting the most flavour, colour and aroma from every cup of loose-leaf herbal tea."
 ---
 

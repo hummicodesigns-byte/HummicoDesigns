@@ -1,19 +1,28 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { breadcrumbSchema } from '../../lib/seo';
 
 // Newest first.
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'The Hummico Journal', path: '/blog/' },
+  ]),
+];
+
 const fmtDate = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
 
 <BaseLayout
-  title="Blog · Hummico Designs"
-  description="The Hummico journal — gentle guides to brewing loose-leaf herbal tea, calming botanical blends, and the little rituals behind our hand-packed gift boxes from Houston, Texas."
+  title="The Hummico Journal — Herbal Tea Rituals & Botanical Wisdom"
+  description="Tea-brewing guides, calming herbal blends and gift-box inspiration from Hummico Designs — gentle rituals and botanical wisdom from our hand-packed studio in Houston, TX."
+  schemas={schemas}
 >
   <!-- ════════════════ HERO ════════════════ -->
   <!-- TODO_HUMMICO: Replace the placeholder background on .bhero-bg with the real
@@ -81,12 +90,12 @@ const fmtDate = (d: Date) =>
   .bhero-bg {
     position: absolute;
     inset: 0;
+    /* Solid brand-green fallback shows through if an image is missing (no broken-image gray). */
     background-color: #225234;
-    /* Placeholder brand gradient — replace with the real photo (see TODO above). */
-    background-image:
-      radial-gradient(circle at 24% 28%, rgba(228,145,166,0.32) 0%, transparent 46%),
-      radial-gradient(circle at 80% 76%, rgba(45,107,71,0.55) 0%, transparent 52%),
-      linear-gradient(150deg, #1c4429 0%, #225234 45%, #2d6b47 100%);
+    /* TODO_HUMMICO: add the real Blog hero images to /public.
+       Desktop: /hero-blog.jpg  ·  Mobile (<=768px): /hero-blog-mobile.jpg
+       (desktop ~1920x1080 landscape; mobile a portrait crop). Mobile swap is in the media query below. */
+    background-image: url('/hero-2.png');
     background-size: cover;
     background-position: center;
   }
@@ -101,7 +110,7 @@ const fmtDate = (d: Date) =>
     padding: 80px 24px;
     width: 100%;
     min-height: calc(66vh - 160px);
-    background: linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.52) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.45) 100%);
   }
   .bhero-eyebrow {
     font-family: 'Jost', sans-serif;
@@ -217,6 +226,8 @@ const fmtDate = (d: Date) =>
     .section { padding: 70px 0; }
     .bhero { margin-top: 130px; min-height: calc(56vh - 130px); }
     .bhero-overlay { min-height: calc(56vh - 130px); padding: 60px 22px; }
+    /* Swap to the portrait Blog hero image on phones (matches the homepage pattern). */
+    .bhero-bg { background-image: url('/hero-2mobile.png'); }
     .bhero-eyebrow { letter-spacing: 0.22em; }
   }
   @media (max-width: 560px) { .blog-grid { grid-template-columns: 1fr; } }

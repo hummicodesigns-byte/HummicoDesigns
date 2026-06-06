@@ -5,20 +5,82 @@ import Navbar from '../components/Navbar.astro';
 import Newsletter from '../components/Newsletter.astro';
 import Footer from '../components/Footer.astro';
 import FixedButton from '../components/FixedButton.astro';
+import { organizationSchema, websiteSchema, jsonLdString } from '../lib/seo';
 
-// `description` is optional — when passed (e.g. by blog pages) it renders a meta
-// description for SEO. Existing pages that don't pass it are unaffected.
-const { title = 'HummicoDesigns', description } = Astro.props;
+const SITE_NAME = 'Hummico Designs';
+const SITE_URL = 'https://hummicodesigns.com';
+
+interface Props {
+  /** Page-specific title. The site name is appended automatically (see `appendSiteName`). */
+  title?: string;
+  /** Meta description (~150–160 chars). Falls back to a brand-level default. */
+  description?: string;
+  /** Open Graph / Twitter share image path (under /public). */
+  image?: string;
+  /** Optional canonical path override (e.g. '/'). Defaults to the current URL path. */
+  canonical?: string;
+  /** og:type — 'website' for pages, 'article' for blog posts. */
+  ogType?: 'website' | 'article';
+  /** Set false to use `title` verbatim (no " | Hummico Designs" suffix) — used by the homepage. */
+  appendSiteName?: boolean;
+  /** Page-specific JSON-LD schema objects (Organization + WebSite are always emitted). */
+  schemas?: unknown[];
+}
+
+const {
+  title = SITE_NAME,
+  description = 'Sister-owned Hummico Designs hand-packs organic herbal tea gift boxes and wellness sets in Houston, TX — calming rituals and thoughtful gifting, available on Etsy.',
+  // TODO_HUMMICO: replace /og-default.jpg with a real 1200x630 social share image in /public.
+  image = '/og-default.jpg',
+  canonical,
+  ogType = 'website',
+  appendSiteName = true,
+  schemas = [],
+} = Astro.props as Props;
+
+const fullTitle = appendSiteName ? `${title} | ${SITE_NAME}` : title;
+const canonicalHref = `${SITE_URL}${canonical ?? Astro.url.pathname}`;
+const imageHref = `${SITE_URL}${image}`;
+
+// Organization + WebSite ship on every page; pages append their own schemas.
+const allSchemas = [organizationSchema, websiteSchema, ...schemas];
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalHref} />
+
+    <!-- Favicons -->
     <link rel="icon" type="image/png" href="/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    {description && <meta name="description" content={description} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalHref} />
+    <meta property="og:image" content={imageHref} />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageHref} />
+
+    <!-- Structured data (JSON-LD) -->
+    {allSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLdString(schema)} />
+    ))}
   </head>
   <body class="font-jakarta smooth-scroll">
     <TopBar />
