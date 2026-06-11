@@ -19,40 +19,46 @@ import { breadcrumbSchema, productSchema } from '../lib/seo';
 //   product object is interchangeable between the two arrays.
 // ─────────────────────────────────────────────────────────────────────────────
 
-// TODO_HUMMICO: Replace these 4 placeholder best-sellers with real products
-// (name, description, price, Etsy listing URL, and a product photo).
+// Best Sellers re-features 4 REAL products that also live in `collectionProducts` below.
+// (Curated showcase — same product objects appear in both sections, intentionally.)
+// Available tags: for-her, for-him, self-care, birthday, mothers-day, fathers-day, get-well, sympathy, comfort, wellness, spa, sampler, thank-you, relaxation
 const bestSellers = [
   {
-    name: 'TODO_HUMMICO — Tea Ritual Box',
-    description: 'A slow-morning ritual in a box: hand-blended herbal teas and quiet comforts, wrapped to feel like a gentle pause in the day.',
-    price: '$00.00',
+    name: 'TODO_HUMMICO — Thinking of You Set',
+    description: 'A heartfelt little gift of warm sips and small comforts — a quiet way to say someone matters to you.',
+    price: '$34.36',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
+    image: '/birthday-tea-gift.avif',
+    tags: ['for-her', 'birthday', 'mothers-day'],
   },
   {
-    name: 'TODO_HUMMICO — Calm Evening Set',
-    description: 'Soft, soothing botanicals chosen for unwinding — the kind of small luxury that turns the end of the day into a moment for yourself.',
-    price: '$00.00',
+    name: 'TODO_HUMMICO — Restful Night Box',
+    description: 'A gentle wind-down collection of soothing botanicals, chosen to help close the day softly and slowly.',
+    price: '$22.36',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
+    image: '/herbal-tea-relaxation-gift.avif',
+    tags: ['for-her', 'self-care', 'relaxation', 'mothers-day'],
   },
   {
-    name: 'TODO_HUMMICO — Self-Care Bundle',
-    description: 'A thoughtfully curated mix of wellness treats and warm sips, put together to help someone feel genuinely looked after.',
-    price: '$00.00',
+    name: 'TODO_HUMMICO — Thinking of You Set',
+    description: 'A heartfelt little gift of warm sips and small comforts — a quiet way to say someone matters to you.',
+    price: '$34.36',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
+    image: '/stress-relief-gift.jpg',
+    tags: ['for-her', 'self-care', 'relaxation'],
   },
   {
-    name: 'TODO_HUMMICO — Cozy Comfort Box',
-    description: 'Everything needed for a cozy in: comforting teas and gentle indulgences, hand-packed to feel personal and warm.',
-    price: '$00.00',
+    name: 'TODO_HUMMICO — Spa Day Set',
+    description: 'Soft, restorative self-care treats brought together for an at-home spa moment — calm, simple, and indulgent.',
+    price: '$22.36',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
+    image: '/herbal-tea-honey-candle.avif',
+    tags: ['for-her', 'self-care', 'spa', 'mothers-day'],
   },
 ];
 
 
+// Available tags: for-her, for-him, self-care, birthday, mothers-day, fathers-day, get-well, sympathy, comfort, wellness, spa, sampler, thank-you, relaxation
 const collectionProducts = [
   {
     name: 'TODO_HUMMICO — Garden Tea Box',
@@ -61,6 +67,7 @@ const collectionProducts = [
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
     image: '/herbal-tea-candle-infuser.avif',
     category: 'Organic Herbal Tea Set',
+    tags: ['for-her', 'wellness'],
   },
   {
     name: 'TODO_HUMMICO — Wellness Gift Set',
@@ -69,6 +76,7 @@ const collectionProducts = [
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
     image: '/herbal-tea-recovery-comfort.avif',
     category: 'Wellness Gifts',
+    tags: ['for-her', 'get-well', 'comfort'],
   },
   {
     name: 'TODO_HUMMICO — Spa Day Set',
@@ -77,6 +85,7 @@ const collectionProducts = [
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
     image: '/herbal-tea-honey-candle.avif',
     category: 'Tea Bag Bundle Gift Box',
+    tags: ['for-her', 'self-care', 'spa', 'mothers-day'],
   },
   {
     name: 'TODO_HUMMICO — Morning Coffee Box',
@@ -85,6 +94,7 @@ const collectionProducts = [
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
     image: '/herbal-tea-candle-jar-infuser.avif',
     category: 'Coffee Tea Bundle',
+    tags: ['for-him', 'wellness'],
   },
   {
     name: 'TODO_HUMMICO — Restful Night Box',
@@ -93,6 +103,7 @@ const collectionProducts = [
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
     image: '/herbal-tea-relaxation-gift.avif',
     category: 'Tea Bag Bundle Gift Box',
+    tags: ['for-her', 'self-care', 'relaxation', 'mothers-day'],
   },
   {
     name: 'TODO_HUMMICO — Thinking of You Set',
@@ -101,6 +112,7 @@ const collectionProducts = [
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
     image: '/birthday-tea-gift.avif',
     category: 'Organic Herbal Tea Set',
+    tags: ['for-her', 'birthday', 'mothers-day'],
   },
   {
     name: 'TODO_HUMMICO — Thinking of You Set',
@@ -109,6 +121,7 @@ const collectionProducts = [
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
     image: '/comfort-care-package.jpg',
     category: 'Tea Bag Bundle Gift Box',
+    tags: ['for-her', 'comfort', 'mothers-day'],
   },
   {
     name: 'TODO_HUMMICO — Thinking of You Set',
@@ -117,6 +130,7 @@ const collectionProducts = [
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
     image: '/stress-relief-gift.jpg',
     category: 'Coffee Tea Bundle',
+    tags: ['for-her', 'self-care', 'relaxation'],
   },
   {
     name: 'TODO_HUMMICO — Thinking of You Set',
@@ -125,6 +139,7 @@ const collectionProducts = [
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
     image: '/herbal-tea-candle-bodyoil.jpg',
     category: 'Tea Bag Bundle Gift Box',
+    tags: ['for-her', 'self-care', 'spa'],
   },
   {
     name: 'TODO_HUMMICO — Thinking of You Set',
@@ -133,6 +148,7 @@ const collectionProducts = [
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
     image: '/fruit-powder-gift-box.jpg',
     category: 'Organic Fruit Powder Set',
+    tags: ['for-her', 'wellness', 'self-care'],
   },
   {
     name: 'TODO_HUMMICO — Thinking of You Set',
@@ -141,6 +157,7 @@ const collectionProducts = [
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
     image: '/organic-tea-cup-saucercandle.webp',
     category: 'Organic Herbal Tea Set',
+    tags: ['for-her', 'mothers-day'],
   },
   {
     name: 'TODO_HUMMICO — Thinking of You Set',
@@ -149,41 +166,79 @@ const collectionProducts = [
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
     image: '/herbal-tea-sampler.webp',
     category: 'Tea Refill Set',
+    tags: ['sampler'],
+  },
+  {
+    name: 'TODO_HUMMICO — Garden Tea Box',
+    description: 'A bright, floral blend collection for slow afternoons — gentle, fragrant, and made for lingering over a warm cup.',
+    price: '$31.96',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '/chai-tea-fathers-gift.jpg',
+    category: 'Organic Herbal Tea Set',
+    tags: ['for-him', 'wellness'],
+  },
+  {
+    name: 'TODO_HUMMICO — Garden Tea Box',
+    description: 'A bright, floral blend collection for slow afternoons — gentle, fragrant, and made for lingering over a warm cup.',
+    price: '$33.56',
+    etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
+    image: '/chai-tea-gift-set.webp',
+    category: 'Organic Herbal Tea Set',
+    tags: ['for-her', 'wellness'],
   },
 
 ];
 
-// TODO_HUMMICO: Replace these 4 placeholder featured products (each shows a light
-// info panel on the left and a product photo on the right).
+// Featured Gifts re-features 4 REAL products that also live in `collectionProducts` below.
+// (Curated showcase — same product objects appear in both sections, intentionally.)
+// Available tags: for-her, for-him, self-care, birthday, mothers-day, fathers-day, get-well, sympathy, comfort, wellness, spa, sampler, thank-you, relaxation
 const featured = [
   {
-    name: 'TODO_HUMMICO — Signature Tea Ritual',
-    description: 'Our most-loved box, made larger and lovelier — a complete slow-living ritual of hand-blended teas and quiet comforts, presented to feel like an occasion in itself.',
-    price: '$00.00',
+    name: 'TODO_HUMMICO — Wellness Gift Set',
+    description: 'A caring little collection of comforts, curated to tell someone they are thought of and quietly looked after.',
+    price: '$34.36',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
+    image: '/herbal-tea-recovery-comfort.avif',
+    tags: ['for-her', 'get-well', 'comfort'],
   },
   {
-    name: 'TODO_HUMMICO — The Calm Collection',
-    description: 'A curated set built entirely around unwinding — soothing botanicals and soft indulgences gathered for the people who deserve to truly slow down.',
-    price: '$00.00',
+    name: 'TODO_HUMMICO — Thinking of You Set',
+    description: 'A heartfelt little gift of warm sips and small comforts — a quiet way to say someone matters to you.',
+    price: '$38.36',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
+    image: '/organic-tea-cup-saucercandle.webp',
+    tags: ['for-her', 'mothers-day'],
   },
   {
-    name: 'TODO_HUMMICO — Luxury Gifting Box',
-    description: 'Our most giftable showcase — elegantly wrapped, hand-packed, and designed to look as wonderful to give as it feels to receive.',
-    price: '$00.00',
+    name: 'TODO_HUMMICO — Thinking of You Set',
+    description: 'A heartfelt little gift of warm sips and small comforts — a quiet way to say someone matters to you.',
+    price: '$26.36',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
+    image: '/comfort-care-package.jpg',
+    tags: ['for-her', 'comfort', 'mothers-day'],
   },
   {
-    name: 'TODO_HUMMICO — Coffee Lover Retreat',
-    description: 'A warm, grounding coffee escape for the early risers — comforting roasts and gentle treats brought together for unhurried mornings.',
-    price: '$00.00',
+    name: 'TODO_HUMMICO — Thinking of You Set',
+    description: 'A heartfelt little gift of warm sips and small comforts — a quiet way to say someone matters to you.',
+    price: '$27.96',
     etsyLink: 'https://www.etsy.com/listing/TODO_HUMMICO',
-    image: '',
+    image: '/fruit-powder-gift-box.jpg',
+    tags: ['for-her', 'wellness', 'self-care'],
   },
+];
+
+// Filter chips for "Shop by occasion". Each chip maps to a SET of tags; a product
+// matches a chip if it has ANY of the chip's tags. "All" (empty tags) shows everything.
+// Edit chip labels/tag sets here; edit each product's `tags` array above.
+const chips = [
+  { label: 'All', tags: [] },
+  { label: 'For Her', tags: ['for-her'] },
+  { label: 'For Him', tags: ['for-him'] },
+  { label: 'Self-care & Relaxation', tags: ['self-care', 'relaxation', 'spa', 'wellness'] },
+  { label: 'Birthday', tags: ['birthday'] },
+  { label: "Mother's Day", tags: ['mothers-day'] },
+  { label: 'Get Well & Sympathy', tags: ['get-well', 'sympathy', 'comfort'] },
+  { label: 'Tea Sampler', tags: ['sampler'] },
 ];
 
 // TODO_HUMMICO: Replace each masonry tile's `image` with a real lifestyle/product
@@ -254,7 +309,7 @@ const schemas = [
       <!-- Reusable product-card grid (4 across on desktop). -->
       <div class="card-grid card-grid--4" data-reveal-group>
         {bestSellers.map((p) => (
-          <article class="product-card" data-reveal>
+          <article class="product-card" data-reveal data-tags={p.tags.join(' ')}>
             <div class="product-card-media">
               {p.image
                 ? <img src={p.image} alt={p.name} class="product-card-img" loading="lazy" />
@@ -280,6 +335,25 @@ const schemas = [
     </div>
   </section>
 
+  <!-- ════════════════ FILTER CHIPS (Shop by occasion) ════════════════ -->
+  <!-- Filters product cards across Best Sellers, Our Collections AND Featured Gifts. -->
+  <section class="filter-bar" aria-label="Filter collections by occasion">
+    <div class="container">
+      <p class="eyebrow filter-eyebrow">Shop by occasion</p>
+      <div class="chips" role="tablist" aria-label="Shop by occasion">
+        {chips.map((chip, i) => (
+          <button
+            class="chip"
+            type="button"
+            role="tab"
+            aria-pressed={i === 0 ? 'true' : 'false'}
+            data-filter={chip.tags.join(' ')}
+          >{chip.label}</button>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- ════════════════ 3. OUR COLLECTIONS (grid + filters) ════════════════ -->
   <section id="our-collections" class="section collections-grid" aria-label="Our collections">
     <div class="container">
@@ -291,7 +365,7 @@ const schemas = [
 
       <div class="card-grid card-grid--3" data-reveal-group>
         {collectionProducts.map((p) => (
-          <article class="product-card" data-reveal>
+          <article class="product-card" data-reveal data-tags={p.tags.join(' ')}>
             <div class="product-card-media">
               {p.image
                 ? <img src={p.image} alt={p.name} class="product-card-img" loading="lazy" />
@@ -314,6 +388,12 @@ const schemas = [
           </article>
         ))}
       </div>
+
+      <!-- Shown in place of the grid when a filter matches no Our Collections products -->
+      <div class="filter-empty" data-filter-empty hidden>
+        <p>Nothing in this collection yet — but new boxes are added regularly. Try another filter or check back soon.</p>
+      </div>
+
       <p class="etsy-note">You'll complete your order securely on Etsy.</p>
     </div>
   </section>
@@ -336,7 +416,7 @@ const schemas = [
     <div class="featured-viewport" data-featured>
       <div class="featured-stack" data-featured-stack>
         {featured.map((p, i) => (
-          <article class="featured-card" data-featured-card>
+          <article class="featured-card" data-featured-card data-tags={p.tags.join(' ')}>
             <!-- LEFT: light/white info panel (noticeably lighter than the off-white bg) -->
             <div class="featured-panel">
               <span class="featured-index">{String(i + 1).padStart(2, '0')} / {String(featured.length).padStart(2, '0')}</span>
@@ -407,6 +487,73 @@ const schemas = [
 </BaseLayout>
 
 <style>
+  /* ─────────── Filter chips (Shop by occasion) ─────────── */
+  .filter-bar {
+    background-color: #faf6f0;
+    padding: 56px 0 0;
+  }
+  .filter-eyebrow {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+  .chip {
+    flex: 0 0 auto;
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.84rem;
+    letter-spacing: 0.04em;
+    padding: 11px 22px;
+    border-radius: 999px;
+    border: 1px solid #225234;
+    background-color: #faf6f0;
+    color: #225234;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.15s ease;
+  }
+  .chip:hover { background-color: rgba(34, 82, 52, 0.08); }
+  .chip[aria-pressed='true'] {
+    background-color: #225234;
+    color: #faf6f0;
+  }
+  .chip:focus-visible { outline: 2px solid #e491a6; outline-offset: 2px; }
+
+  /* Empty state when a filter matches nothing */
+  .filter-empty {
+    text-align: center;
+    padding: 80px 20px;
+  }
+  .filter-empty p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    line-height: 1.5;
+    color: #225234;
+    opacity: 0.82;
+    max-width: 44ch;
+    margin: 0 auto;
+  }
+
+  /* Mobile: chips scroll horizontally on one line (no wrap), scrollbar hidden but functional */
+  @media (max-width: 600px) {
+    .chips {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none; /* Firefox */
+    }
+    .chips::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+    .chip { scroll-snap-align: start; }
+  }
+
   /* ─────────── Shared type + layout helpers (match home/about) ─────────── */
   .eyebrow {
     font-family: 'Jost', sans-serif;
@@ -1038,4 +1185,43 @@ const schemas = [
       });
     });
   }
+</script>
+
+<script>
+  // ── Filter chips (Shop by occasion) ────────────────────────────────────────
+  // Filters ONLY the Our Collections grid. Best Sellers and Featured Gifts always show
+  // all of their products. A product matches a chip if its data-tags contains ANY of the
+  // chip's tags. "All" has an empty data-filter and matches everything.
+  const chipEls = Array.from(document.querySelectorAll<HTMLButtonElement>('.chip[data-filter]'));
+  const ourCollections = document.getElementById('our-collections');
+  // Scope the cards, grid, and empty-state to the Our Collections section only.
+  const cards = ourCollections
+    ? Array.from(ourCollections.querySelectorAll<HTMLElement>('[data-tags]'))
+    : [];
+  const grid = ourCollections?.querySelector<HTMLElement>('.card-grid') ?? null;
+  const emptyState = ourCollections?.querySelector<HTMLElement>('[data-filter-empty]') ?? null;
+
+  function applyFilter(filterStr: string) {
+    const wanted = filterStr.trim() ? filterStr.trim().split(/\s+/) : [];
+    let anyVisible = false;
+
+    cards.forEach((card) => {
+      const cardTags = (card.getAttribute('data-tags') || '').split(/\s+/).filter(Boolean);
+      const show = wanted.length === 0 || wanted.some((t) => cardTags.includes(t));
+      card.style.display = show ? '' : 'none';
+      if (show) anyVisible = true;
+    });
+
+    // Swap the grid for the empty-state message when nothing matches (heading stays).
+    if (grid) grid.style.display = anyVisible ? '' : 'none';
+    if (emptyState) emptyState.hidden = anyVisible;
+  }
+
+  chipEls.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      chipEls.forEach((c) => c.setAttribute('aria-pressed', 'false'));
+      chip.setAttribute('aria-pressed', 'true');
+      applyFilter(chip.getAttribute('data-filter') || '');
+    });
+  });
 </script>
