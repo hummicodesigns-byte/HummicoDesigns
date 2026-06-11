@@ -5,9 +5,9 @@ const ETSY_SHOP = 'https://www.etsy.com/shop/HummicoDesigns';
 // TODO_HUMMICO: Swap these three tiles for your chosen "featured" product photos.
 // These are stand-ins pulled from existing imagery; the full grids now live on /collections.
 const tiles = [
-  { image: '/herbal3.avif', label: 'Best Sellers' },
-  { image: '/herbal tea box.avif', label: 'Luxury Boxes' },
-  { image: '/herbal2.avif', label: 'New Arrivals' },
+  { image: '/herbal-tea-candle-infuser.avif', label: 'Best Sellers', link: '/collections#best-sellers' },
+  { image: '/birthday-tea-gift.avif', label: 'Collections', link: '/collections#our-collections' },
+  { image: '/herbal-tea-honey-candle.avif', label: 'Featured GIfts', link: '/collections#featured-gifts' },
 ];
 ---
 
@@ -24,7 +24,7 @@ const tiles = [
 
     <div class="ct-grid">
       {tiles.map((tile) => (
-        <a href="/collections" class="ct-tile" aria-label={`${tile.label} — view collections`}>
+        <a href={tile.link} class="ct-tile" aria-label={`${tile.label} — view collections`}>
           <img src={tile.image} alt={tile.label} loading="lazy" />
           <span class="ct-tile-overlay"></span>
           <span class="ct-tile-label">{tile.label}</span>
@@ -36,6 +36,8 @@ const tiles = [
       <a href="/collections" class="ct-btn-primary">Explore Collections</a>
       <a href={ETSY_SHOP} target="_blank" rel="noopener noreferrer" class="ct-btn-secondary">Shop on Etsy</a>
     </div>
+
+    <p class="ct-etsy-note">You'll complete your order securely on Etsy.</p>
   </div>
 </section>
 
@@ -128,6 +130,16 @@ const tiles = [
     gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
+  }
+  .ct-etsy-note {
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    color: #225234;
+    opacity: 0.62;
+    margin: 16px 0 0;
   }
   .ct-btn-primary, .ct-btn-secondary {
     font-family: 'Jost', sans-serif;

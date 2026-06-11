@@ -89,6 +89,12 @@ const year = new Date().getFullYear();
     <!-- Divider -->
     <div style="height:1px;background-color:rgba(250,246,240,0.1);margin-bottom:24px;"></div>
 
+    <!-- Legal links -->
+    <div class="footer-legal-links" style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;">
+      <a href="/privacy" class="footer-legal-link">Privacy Policy</a>
+      <a href="/terms" class="footer-legal-link">Terms of Service</a>
+    </div>
+
     <!-- Copyright -->
     <p class="footer-copyright">© {year} Hummico Designs. All rights reserved.</p>
   </div>
@@ -153,6 +159,20 @@ const year = new Date().getFullYear();
     font-size: 0.8rem;
     opacity: 0.45;
     letter-spacing: 0.05em;
+  }
+  .footer-legal-link {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    color: #faf6f0;
+    text-decoration: none;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    letter-spacing: 0.06em;
+    transition: all 0.3s ease;
+  }
+  .footer-legal-link:hover {
+    color: #e491a6;
+    opacity: 1;
   }
   .social-icon {
     background-color: rgba(250,246,240,0.08);

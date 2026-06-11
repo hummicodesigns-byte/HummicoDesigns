@@ -60,6 +60,8 @@ const schemas = [
             be delighted to help.
           </p>
 
+          <p class="contact-custom-note">Custom &amp; corporate orders welcome — message us anytime.</p>
+
           <ul class="contact-list">
             <!-- Location -->
             <li class="contact-item">
@@ -131,6 +133,8 @@ const schemas = [
               <label for="cf-message">Message</label>
               <textarea id="cf-message" name="message" rows="5" required placeholder="Tell us what's on your mind…"></textarea>
             </div>
+
+            <p class="form-reply-note">We usually reply within 1–2 business days.</p>
 
             <button type="submit" class="form-btn" id="cf-submit">
               <span class="btn-label">Send message</span>
@@ -210,6 +214,28 @@ const schemas = [
     color: #225234;
     opacity: 0.85;
     margin-top: 18px;
+  }
+  /* Friendly "custom & corporate orders" line in the contact info column */
+  .contact-custom-note {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+    color: #225234;
+    margin: 20px 0 0;
+    padding-left: 14px;
+    border-left: 2px solid #e491a6;
+  }
+  /* Calm reply-time reassurance near the form's submit button */
+  .form-reply-note {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    color: #225234;
+    opacity: 0.7;
+    margin: 0 0 14px;
   }
   .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
   .section { background-color: #faf6f0; padding: 100px 0; }

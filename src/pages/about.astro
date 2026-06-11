@@ -4,12 +4,10 @@ import { breadcrumbSchema, faqPageSchema } from '../lib/seo';
 
 const ETSY_SHOP = 'https://www.etsy.com/shop/HummicoDesigns';
 
-// TODO_HUMMICO: Replace all placeholder copy, stats and reviews on this page with the real
-// brand content. Every number below is a stand-in — swap for verified figures.
 const introStats = [
-  { target: 500, suffix: '+', label: 'Boxes gifted' },
   { target: 4.9, decimals: 1, suffix: '★', label: 'Average rating' },
   { target: 100, suffix: '%', label: 'Organic ingredients' },
+  { target: 100, suffix: '%', label: 'Hand-packed in Houston' },
   { target: 2, suffix: '', label: 'Sisters, one vision' },
 ];
 
@@ -19,31 +17,31 @@ const reasons = [
   { title: 'Sister-owned', body: 'Two sisters, one table, every box packed by hand with care you can feel.', image: '/why1.jpg' },
   { title: 'Thoughtfully curated', body: 'Nothing filler. Each item is chosen to earn its place in the box and your day.', image: '/why2.jpg' },
   { title: 'Luxury wellness focus', body: 'Calm, considered, and quietly indulgent — small rituals that feel like a treat.', image: '/why3.jpg' },
-  { title: 'Elegant packaging', body: 'Wrapped to feel personal, so it looks as good to give as it does to receive.', image: '/lavender2.avif' },
+  { title: 'Elegant packaging', body: 'Wrapped to feel personal, so it looks as good to give as it does to receive.', image: 'stress-relief-gift.jpg' },
   { title: 'Meaningful gifting', body: 'Built for the moments that matter — a way to tell someone they are truly seen.', image: '/why5.jpg' },
 ];
 
 const whyStats : { target: number; suffix: string; label: string; decimals?: number }[] = [
-  { target: 5, suffix: '', label: 'Curated collections' },
+  { target: 5, decimals: 0, suffix: '★', label: 'Star Seller on Etsy' },
   { target: 100, suffix: '%', label: 'Hand-packed boxes' },
-  { target: 1000, suffix: '+', label: 'Cups of calm shared' },
+  { target: 0, suffix: '', label: 'Artificial flavors or fillers' },
 ];
 
 const faqs = [
   { q: 'Are your teas organic?', a: 'Our blends are chosen with quality in mind. Each listing notes its ingredients so you can see exactly what is inside before you gift it.' },
   { q: 'Can I order a custom or corporate box?', a: 'We love custom and larger orders. Message us on Etsy or through the contact form and we will help put something together.' },
-  { q: 'Do you list allergens?', a: 'Yes — every box lists its ingredients on the product page. If you have a specific concern, reach out before ordering and we will help.' },
+  { q: 'Do you list allergens?', a: 'We use only organic, food-grade ingredients in every box. If you have specific allergies, are pregnant, or are breastfeeding, please consult your doctor before use. For custom-allergen requests, message us directly — we\'re happy to help.' },
   { q: 'How long does shipping take?', a: 'Orders are packed by hand and dispatched as quickly as we can. Current processing and delivery times are shown at checkout on Etsy.' },
   { q: 'What is your returns policy?', a: 'If something is not right, contact us and we will make it right. Full details are listed in our Etsy shop policies.' },
   { q: 'Do you ship gifts directly to the recipient?', a: 'Yes. Add the recipient address at checkout and we can include a short handwritten-style note on request.' },
 ];
 
 const reviews = [
-  { text: 'Add a real Etsy review here — what a customer actually wrote about their box.', name: 'First name L.' },
-  { text: 'Another genuine review goes here — keep the warmest, most specific ones.', name: 'First name L.' },
-  { text: 'A third real review here — short and heartfelt reads best in the marquee.', name: 'First name L.' },
-  { text: 'A fourth real review here — mention the gifting moment if they did.', name: 'First name L.' },
-  { text: 'A fifth real review here — packaging and presentation comments shine.', name: 'First name L.' },
+  { text: 'The gift box was put together very well. I love how everything was wrapped up securely. The tea looks so fresh. I can\'t wait to try it.' },
+  { text: 'Great gift box. Clean, well-designed packaging and solid quality overall. The tea selection is good and tastes fresh, and the candle adds a nice, subtle touch without being overpowering. Definitely recommend.' },
+  { text: 'Customer service was so helpful and delivered this gift on time and expedited the timing.' },
+  { text: 'I\'m absolutely in love with this mug! Shipping was super fast, and it was packed really well. Everything arrived in perfect condition.' },
+  { text: 'Got this as a gift, and my friend absolutely loved it! The packaging was so beautiful that I didn\'t even need to swap the box — ready to gift as is. Fast delivery, lovely design.' },
 ];
 
 // Structured data: breadcrumb + FAQ.
@@ -187,20 +185,16 @@ const schemas = [
       <h2 class="display-h2" style="color:#faf6f0;">Loved, gifted, <span style="color:#e491a6;">remembered.</span></h2>
     </div>
 
-    <!-- TODO_HUMMICO: Replace placeholder reviews with real Etsy reviews; remove the
-         "Placeholder" tags once they are real. -->
     <div class="rev-marquee">
       <div class="rev-track">
         {[...reviews, ...reviews].map((r) => (
           <figure class="rev-card">
-            <span class="rev-tag">Placeholder</span>
             <div class="rev-stars" aria-label="5 out of 5 stars">
               {Array.from({ length: 5 }).map(() => (
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#e491a6" stroke="#e491a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
               ))}
             </div>
             <blockquote class="rev-text">“{r.text}”</blockquote>
-            <figcaption class="rev-name">{r.name}</figcaption>
           </figure>
         ))}
       </div>
@@ -643,20 +637,6 @@ const schemas = [
     padding: 30px 28px;
     margin: 0;
   }
-  .rev-tag {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.58rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #b06b7d;
-    background: rgba(228, 145, 166, 0.14);
-    border: 1px dashed rgba(228, 145, 166, 0.6);
-    border-radius: 20px;
-    padding: 3px 9px;
-  }
   .rev-stars { display: flex; gap: 2px; margin-bottom: 16px; }
   .rev-text {
     font-family: 'Cormorant Garamond', serif;
@@ -666,14 +646,6 @@ const schemas = [
     line-height: 1.55;
     color: #225234;
     margin-bottom: 16px;
-  }
-  .rev-name {
-    font-family: 'Jost', sans-serif;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-size: 0.72rem;
-    color: #e491a6;
   }
 
   /* ── Responsive (~mobile 400px) ── */

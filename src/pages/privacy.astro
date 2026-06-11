@@ -1,0 +1,285 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { breadcrumbSchema } from '../lib/seo';
+
+const EMAIL = 'Hummicodesigns@gmail.com';
+const ETSY = 'https://www.etsy.com/shop/HummicoDesigns';
+
+// Effective date — today. Update this whenever the policy meaningfully changes.
+const EFFECTIVE_DATE = 'June 7, 2026';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Privacy Policy', path: '/privacy/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="How Hummico Designs collects and uses your information."
+  schemas={schemas}
+>
+  <!-- ════════ HERO ════════ -->
+  <section class="legal-hero" aria-label="Privacy Policy">
+    <div class="legal-hero-inner">
+      <p class="legal-eyebrow">Hummico Designs</p>
+      <h1 class="legal-title">Privacy Policy</h1>
+      <p class="legal-sub">A plain-spoken look at what we collect, and why.</p>
+    </div>
+  </section>
+
+  <!-- ════════ BODY ════════ -->
+  <article class="legal-body">
+    <div class="legal-col">
+      <section class="legal-section">
+        <h2>Introduction</h2>
+        <p>
+          Hummico Designs is a small, sister-owned business based in Houston, Texas. We create
+          herbal tea gift boxes and quiet luxuries, and this website is where you can get to
+          know us, read our journal, and find our products. This policy explains the limited
+          information we collect when you visit, how we use it, and the choices you have.
+        </p>
+        <p>
+          We've tried to keep it warm and readable rather than dense and legalistic — because
+          that's how we'd want it explained to us.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Information We Collect</h2>
+        <p>We only collect what you choose to share, plus the basic technical data any website receives.</p>
+
+        <h3>Contact form</h3>
+        <p>
+          When you send us a message through our <a href="/contact">contact page</a>, we collect
+          your <strong>name</strong>, <strong>email address</strong>, and the
+          <strong>message</strong> you write, so we can reply to you.
+        </p>
+
+        <h3>Newsletter</h3>
+        <p>
+          If you subscribe to our newsletter, we collect your <strong>email address</strong> so we
+          can send you occasional updates and little rituals. You can unsubscribe at any time.
+        </p>
+
+        <h3>Hosting logs</h3>
+        <p>
+          Like most websites, our host may automatically record standard technical data — such as
+          IP address, browser type, and the time of a request — to keep the site secure and
+          running reliably. This is not used to identify or track you personally.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>How We Use Your Information</h2>
+        <ul>
+          <li>To respond to your questions, custom-order enquiries, and messages.</li>
+          <li>To send our newsletter, but only if you've subscribed.</li>
+          <li>To keep the website secure, stable, and working as it should.</li>
+        </ul>
+        <p>We do not sell, rent, or trade your information, full stop.</p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Third-Party Services</h2>
+        <p>
+          We rely on a few trusted services to run the site. Each only receives the information
+          needed for its specific job:
+        </p>
+        <ul>
+          <li>
+            <strong>Web3Forms</strong> — delivers contact-form submissions to our inbox at {EMAIL}.
+          </li>
+          <li>
+            <strong>Alura</strong> — handles our newsletter sign-ups. (We may move to a different
+            newsletter provider in future; if we do, we'll update this policy.)
+          </li>
+          <li>
+            <strong>Cloudflare Pages</strong> — hosts the website and serves it quickly and securely
+            around the world.
+          </li>
+          <li>
+            <strong>Google Sheets</strong> — powers the small announcement banner at the top of the
+            site. We simply read banner text from a published sheet; <em>no</em> visitor information
+            is ever sent to it.
+          </li>
+        </ul>
+      </section>
+
+      <section class="legal-section">
+        <h2>Cookies and Tracking</h2>
+        <p>
+          We do not currently use cookies for tracking, advertising, or analytics. There is no
+          Google Analytics and there are no tracking scripts on this site. Standard hosting
+          infrastructure may log basic technical data for security and reliability, which is
+          automatically deleted on a rolling basis.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Data Retention</h2>
+        <p>
+          We keep contact-form messages and newsletter email addresses only as long as needed for
+          the purpose they were collected for — replying to you, or sending the newsletter you
+          asked for. You can ask us to remove your details, or unsubscribe, at any time and we'll
+          take care of it.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Your Rights</h2>
+        <p>You can always:</p>
+        <ul>
+          <li>Ask what personal information we hold about you.</li>
+          <li>Ask us to delete your information.</li>
+          <li>Unsubscribe from the newsletter, any time.</li>
+        </ul>
+        <p>Just email us at <a href={`mailto:${EMAIL}`}>{EMAIL}</a> and we'll help.</p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Children's Privacy</h2>
+        <p>
+          This website is not intended for children under 13, and we do not knowingly collect
+          information from them. If you believe a child has shared information with us, please get
+          in touch and we'll remove it.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Changes to This Policy</h2>
+        <p>
+          We may update this policy from time to time as our little business grows or our tools
+          change. When we do, we'll revise the effective date below. We encourage you to check back
+          now and then.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Contact</h2>
+        <p>
+          Questions about this policy, or about your information? We'd genuinely like to hear from
+          you — email <a href={`mailto:${EMAIL}`}>{EMAIL}</a> or visit our
+          <a href={ETSY} target="_blank" rel="noopener noreferrer">Etsy shop</a>.
+        </p>
+      </section>
+
+      <p class="legal-effective">Effective date: {EFFECTIVE_DATE}</p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  /* ── HERO ── */
+  .legal-hero {
+    background-color: #225234;
+    margin-top: 160px; /* clears the fixed topbar + transparent navbar, like the other pages */
+    padding: 70px 24px 64px;
+    text-align: center;
+  }
+  .legal-hero-inner { max-width: 720px; margin: 0 auto; }
+  .legal-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #e491a6;
+    font-size: clamp(0.6rem, 1.2vw, 0.74rem);
+    margin-bottom: 18px;
+  }
+  .legal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.1;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    margin: 0;
+  }
+  .legal-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: clamp(0.9rem, 1.4vw, 1.02rem);
+    letter-spacing: 0.03em;
+    margin-top: 16px;
+  }
+
+  /* ── BODY ── */
+  .legal-body {
+    background-color: #faf6f0;
+    padding: 80px 20px 100px;
+  }
+  .legal-col { max-width: 720px; margin: 0 auto; }
+
+  .legal-section { margin-bottom: 44px; }
+  .legal-section:last-of-type { margin-bottom: 32px; }
+
+  .legal-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    line-height: 1.18;
+    color: #225234;
+    margin: 0 0 16px;
+  }
+  .legal-body h3 {
+    font-family: 'Jost', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    font-size: 1.02rem;
+    color: #2d6b47;
+    margin: 26px 0 10px;
+  }
+  .legal-body p {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.9;
+    color: #225234;
+    opacity: 0.9;
+    margin: 0 0 18px;
+  }
+  .legal-body ul {
+    margin: 0 0 18px;
+    padding-left: 1.3em;
+  }
+  .legal-body li {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #225234;
+    opacity: 0.9;
+    margin-bottom: 10px;
+  }
+  .legal-body li::marker { color: #e491a6; }
+  .legal-body strong { font-weight: 600; opacity: 1; }
+  .legal-body a {
+    color: #225234;
+    text-decoration: underline;
+    text-decoration-color: #e491a6;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+  .legal-body a:hover { color: #e491a6; }
+
+  .legal-effective {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    font-size: 0.92rem !important;
+    color: #225234;
+    opacity: 0.7 !important;
+    border-top: 1px solid rgba(34, 82, 52, 0.14);
+    padding-top: 24px;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .legal-hero { margin-top: 130px; padding: 56px 22px 50px; }
+    .legal-body { padding: 60px 20px 76px; }
+    .legal-section { margin-bottom: 38px; }
+  }
+</style>

@@ -1,0 +1,258 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { breadcrumbSchema } from '../lib/seo';
+
+const EMAIL = 'Hummicodesigns@gmail.com';
+const ETSY = 'https://www.etsy.com/shop/HummicoDesigns';
+
+// Effective date — today. Update this whenever the terms meaningfully change.
+const EFFECTIVE_DATE = 'June 7, 2026';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Terms of Service', path: '/terms/' },
+  ]),
+];
+---
+
+<BaseLayout
+  title="Terms of Service"
+  description="Terms governing your use of the Hummico Designs website."
+  schemas={schemas}
+>
+  <!-- ════════ HERO ════════ -->
+  <section class="legal-hero" aria-label="Terms of Service">
+    <div class="legal-hero-inner">
+      <p class="legal-eyebrow">Hummico Designs</p>
+      <h1 class="legal-title">Terms of Service</h1>
+      <p class="legal-sub">The simple agreement for using our website.</p>
+    </div>
+  </section>
+
+  <!-- ════════ BODY ════════ -->
+  <article class="legal-body">
+    <div class="legal-col">
+      <section class="legal-section">
+        <h2>Introduction</h2>
+        <p>
+          Welcome to Hummico Designs. By browsing and using this website, you agree to these
+          terms. We've kept them straightforward and friendly — but they do form an agreement
+          between you and our small, sister-owned business based in Houston, Texas. If you don't
+          agree with them, please don't use the site.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Use of the Website</h2>
+        <p>
+          This website is here for you to browse our products, read our journal, and learn about
+          Hummico Designs. It is an informational and brand home, not a checkout.
+        </p>
+        <p>
+          Purchases are made on our
+          <a href={ETSY} target="_blank" rel="noopener noreferrer">Etsy shop</a>, and any order you
+          place there is subject to Etsy's own terms, policies, and checkout process. We link out
+          to specific listings, but the sale itself happens on Etsy.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Intellectual Property</h2>
+        <p>
+          The Hummico Designs name, logo, brand, photography, written content, and journal posts are
+          owned by Hummico Designs and protected by copyright and related rights. You're welcome to
+          read, enjoy, and share links to our pages. Please don't copy, reproduce, or reuse our
+          content or imagery for your own purposes without our written permission.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>User Conduct</h2>
+        <p>When using the site, please don't:</p>
+        <ul>
+          <li>Scrape, harvest, or systematically copy content from the site.</li>
+          <li>Use automated tools or bots to access or overload the website.</li>
+          <li>Misuse the site, interfere with its operation, or attempt to access it in unauthorised ways.</li>
+        </ul>
+      </section>
+
+      <section class="legal-section">
+        <h2>Third-Party Links</h2>
+        <p>
+          Our website links to other places we love and use — including Etsy, Instagram, and
+          Pinterest. Those sites have their own terms and privacy practices, and we aren't
+          responsible for their content or how they handle your information. Following an external
+          link is at your own discretion.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Disclaimers</h2>
+        <p>
+          This website is provided on an "as is" and "as available" basis, without warranties of any
+          kind except those required by law. We do our best to keep information accurate and the
+          site running smoothly, but we can't guarantee it will always be error-free or
+          uninterrupted.
+        </p>
+        <p>
+          Any information about herbal teas and botanicals on this site is shared for general
+          interest only and is <strong>not medical advice</strong>. If you have allergies, are
+          pregnant, are breastfeeding, are taking medication, or are managing a health condition,
+          please consult a qualified healthcare professional before trying new herbs. Always check
+          each product listing for its full ingredients.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Limitation of Liability</h2>
+        <p>
+          To the fullest extent permitted by law, Hummico Designs will not be liable for any
+          indirect, incidental, or consequential damages arising from your use of (or inability to
+          use) this website. Nothing in these terms limits any rights you have that cannot be limited
+          under applicable law.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Governing Law</h2>
+        <p>
+          These terms are governed by the laws of the State of Texas, United States, without regard
+          to its conflict-of-laws rules.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Changes to These Terms</h2>
+        <p>
+          We may update these terms from time to time as our business grows or our tools change.
+          When we do, we'll revise the effective date below. Continuing to use the site after an
+          update means you accept the revised terms.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2>Contact</h2>
+        <p>
+          Questions about these terms? Email us at <a href={`mailto:${EMAIL}`}>{EMAIL}</a> — we're
+          always happy to help.
+        </p>
+      </section>
+
+      <p class="legal-effective">Effective date: {EFFECTIVE_DATE}</p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  /* ── HERO ── */
+  .legal-hero {
+    background-color: #225234;
+    margin-top: 160px; /* clears the fixed topbar + transparent navbar, like the other pages */
+    padding: 70px 24px 64px;
+    text-align: center;
+  }
+  .legal-hero-inner { max-width: 720px; margin: 0 auto; }
+  .legal-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #e491a6;
+    font-size: clamp(0.6rem, 1.2vw, 0.74rem);
+    margin-bottom: 18px;
+  }
+  .legal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.1;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    margin: 0;
+  }
+  .legal-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: clamp(0.9rem, 1.4vw, 1.02rem);
+    letter-spacing: 0.03em;
+    margin-top: 16px;
+  }
+
+  /* ── BODY ── */
+  .legal-body {
+    background-color: #faf6f0;
+    padding: 80px 20px 100px;
+  }
+  .legal-col { max-width: 720px; margin: 0 auto; }
+
+  .legal-section { margin-bottom: 44px; }
+  .legal-section:last-of-type { margin-bottom: 32px; }
+
+  .legal-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    line-height: 1.18;
+    color: #225234;
+    margin: 0 0 16px;
+  }
+  .legal-body h3 {
+    font-family: 'Jost', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    font-size: 1.02rem;
+    color: #2d6b47;
+    margin: 26px 0 10px;
+  }
+  .legal-body p {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.9;
+    color: #225234;
+    opacity: 0.9;
+    margin: 0 0 18px;
+  }
+  .legal-body ul {
+    margin: 0 0 18px;
+    padding-left: 1.3em;
+  }
+  .legal-body li {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #225234;
+    opacity: 0.9;
+    margin-bottom: 10px;
+  }
+  .legal-body li::marker { color: #e491a6; }
+  .legal-body strong { font-weight: 600; opacity: 1; }
+  .legal-body a {
+    color: #225234;
+    text-decoration: underline;
+    text-decoration-color: #e491a6;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+  .legal-body a:hover { color: #e491a6; }
+
+  .legal-effective {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    font-size: 0.92rem !important;
+    color: #225234;
+    opacity: 0.7 !important;
+    border-top: 1px solid rgba(34, 82, 52, 0.14);
+    padding-top: 24px;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .legal-hero { margin-top: 130px; padding: 56px 22px 50px; }
+    .legal-body { padding: 60px 20px 76px; }
+    .legal-section { margin-bottom: 38px; }
+  }
+</style>

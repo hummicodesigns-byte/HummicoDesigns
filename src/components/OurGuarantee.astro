@@ -12,25 +12,22 @@
   </div>
 
   <div style="max-width:1000px;margin:0 auto;">
-    <div class="guarantee-grid" style="display:grid;grid-template-columns:200px 1fr;gap:50px;align-items:center;background-color:#faf6f0;border-radius:30px;padding:50px;position:relative;z-index:2;">
+    <div class="guarantee-grid" style="display:grid;grid-template-columns:240px 1fr;gap:50px;align-items:center;background-color:#faf6f0;border-radius:30px;padding:50px;position:relative;z-index:2;">
       <!-- Guarantee Image -->
+      <!-- TODO_HUMMICO: Replace /Guarantee.png with a new badge that says "Our Promise" when client provides -->
       <div style="display:flex;align-items:center;justify-content:center;">
-        <img src="/Guarantee.png" alt="Our Guarantee" style="width:180px;height:180px;object-fit:contain;border-radius:20px;" />
+        <img src="/Guarantee.png" alt="Our Guarantee" style="width:220px;height:220px;object-fit:contain;border-radius:20px;" />
       </div>
 
       <!-- Content -->
       <div>
-        <h2 style="font-size:2rem;font-weight:700;color:#225234;margin-bottom:15px;line-height:1.3;">
-          The Pack with Purpose Guarantee:
-          <br />
-          <span style="color:#e491a6;">Excellence Delivered</span>
+        <h2 style="font-family:'Cormorant Garamond', serif;font-size:2.6rem;font-weight:600;color:#225234;margin-bottom:15px;line-height:1.2;">
+          Our promise
         </h2>
-        <div style="width:60px;height:3px;background-color:#225234;margin-bottom:20px;"></div>
-        <p style="font-size:1.05rem;line-height:1.8;color:#225234;opacity:0.85;">
-          Every Hummico box is carefully curated and inspected to ensure it meets our
-          high standards. We believe in the power of thoughtful gifting, and we're
-          committed to delivering excellence in every package. If you're not completely
-          satisfied, we'll make it right — that's our promise to you.
+        <div style="width:60px;height:3px;background-color:#e491a6;margin-bottom:20px;"></div>
+        <p style="font-size:1.05rem;line-height:1.8;color:#2d4a39;opacity:0.9;">
+          Every box is packed by hand and checked twice. If yours doesn't feel right,
+          tell us — we'll make it right.
         </p>
       </div>
     </div>
@@ -46,14 +43,19 @@
       gap: 20px !important;
     }
     .guarantee-grid img {
-      width: 120px !important;
-      height: 120px !important;
+      width: 150px !important;
+      height: 150px !important;
     }
     .guarantee-grid h2 {
-      font-size: 1.4rem !important;
+      font-size: 1.9rem !important;
     }
     .guarantee-grid p {
-      font-size: 0.9rem !important;
+      font-size: 0.95rem !important;
+    }
+    /* Badge above text, both centered on mobile */
+    .guarantee-grid > div:last-child > div {
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 </style>

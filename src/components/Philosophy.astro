@@ -11,18 +11,21 @@ const blurbs = [
     title: 'The ritual of slowing down',
     body: 'Steeping a cup is a small permission to pause. We blend for calm mornings and unhurried evenings — the quiet moments that put you back together.',
     image: '/philo1.jpg', // TODO_HUMMICO: swap for real "ritual / slow morning" photo
+    link: '/blog/how-to-brew-loose-leaf-herbal-tea',
   },
   {
     num: '02',
     title: 'Herbs chosen with intention',
     body: 'Chamomile to soften the day’s edges, peppermint to clear the mind, lavender to settle it. Gentle by nature, and chosen with real care.',
     image: '/philo3.jpg', // TODO_HUMMICO: swap for real "herbs / ingredients" photo
+    link: '/blog/calming-herbal-teas',
   },
   {
     num: '03',
     title: 'Care, as a love language',
     body: 'Every box is a deliberate act of being seen — wellness you can hold, wrapped to feel as good to give as it is to receive.',
-    image: '/lavender2.avif', // TODO_HUMMICO: swap for real "gifting / care" photo
+    image: '/stress-relief-gift.jpg', // TODO_HUMMICO: swap for real "gifting / care" photo
+    link: '/blog/whats-inside-a-hummico-tea-gift-box',
   },
 ];
 ---
@@ -48,7 +51,7 @@ const blurbs = [
             <span class="pcard-num">{blurb.num}</span>
             <h3 class="pcard-title">{blurb.title}</h3>
             <p class="pcard-body">{blurb.body}</p>
-            <a href="/blog" class="pcard-readmore">
+            <a href={blurb.link} class="pcard-readmore">
               Read more
               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
