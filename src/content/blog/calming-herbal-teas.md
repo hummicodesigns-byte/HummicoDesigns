@@ -1,16 +1,16 @@
 ---
 title: "Calming Herbal Teas & What People Love Them For"
-description: "A claim-free guide to chamomile, lavender, rose, peppermint, hibiscus and rooibos — and the Hummico blends they live in, including Persian Herbal Garden, Moroccan and English Garden."
+description: "A claim-free guide to chamomile, lavender, rose, peppermint, hibiscus and rooibos and the Hummico blends they live in, including Persian Herbal Garden, Moroccan and English Garden."
 pubDate: 2026-05-26
 image: "/blog2.jpg" # TODO_HUMMICO: add hero/card image path in /public (e.g. /blog/calming-teas.jpg)
-excerpt: "Chamomile, lavender, rose, peppermint and more — the botanicals people reach for most, and the hand-blended Hummico teas they belong to."
+excerpt: "Chamomile, lavender, rose, peppermint and more the botanicals people reach for most, and the hand-blended Hummico teas they belong to."
 ---
 
-There's a reason a warm cup of herbal tea has been part of evening routines for generations. Beyond the flavour, it's the ritual — the pause, the warmth, the few quiet minutes that are entirely your own. Here are some of the botanicals people reach for most often, and the blends we weave them into at Hummico.
+There's a reason a warm cup of herbal tea has been part of evening routines for generations. Beyond the flavour, it's the ritual the pause, the warmth, the few quiet minutes that are entirely your own. Here are some of the botanicals people reach for most often, and the blends we weave them into at Hummico.
 
 ## A cup as a small ritual
 
-Herbal teas (or tisanes) are caffeine-free infusions made from flowers, leaves, roots and fruit rather than the tea plant. That makes them a gentle companion for the late afternoon and evening, when many people like to slow down. None of them are a remedy — they're simply a comforting, fragrant way to mark a moment.
+Herbal teas (or tisanes) are caffeine-free infusions made from flowers, leaves, roots and fruit rather than the tea plant. That makes them a gentle companion for the late afternoon and evening, when many people like to slow down. None of them are a remedy, they're simply a comforting, fragrant way to mark a moment.
 
 ## Chamomile — the classic evening cup
 
@@ -22,7 +22,7 @@ Lavender brings a distinctive, perfumed note that many people find lovely to sip
 
 ## Rose — gentle and romantic
 
-Rose petals add a delicate, fragrant sweetness and a beautiful look to any blend. Long loved across Persian and Middle Eastern tea traditions, rose is the star of our **Persian Herbal Garden** — a blend created to feel like a slow, fragrant garden walk in a cup.
+Rose petals add a delicate, fragrant sweetness and a beautiful look to any blend. Long loved across Persian and Middle Eastern tea traditions, rose is the star of our **Persian Herbal Garden** - a blend created to feel like a slow, fragrant garden walk in a cup.
 
 ## Peppermint — bright and refreshing
 
@@ -48,4 +48,4 @@ The best calming tea is simply the one you most look forward to. Try a floral bl
 
 ---
 
-*TODO_HUMMICO: confirm your exact disclaimer wording.* This article is for general enjoyment and educational purposes only and is not medical or health advice. Hummico teas and botanical blends are not intended to diagnose, treat, cure, or prevent any condition. Words like "calming" and "soothing" describe the sensory ritual of enjoying tea, not a health outcome. If you are pregnant, nursing, taking medication, or managing a health condition, please consult a qualified healthcare professional before trying new herbs.
+This article is for general enjoyment and educational purposes only and is not medical or health advice. Hummico teas and botanical blends are not intended to diagnose, treat, cure, or prevent any condition. Words like "calming" and "soothing" describe the sensory ritual of enjoying tea, not a health outcome. If you are pregnant, nursing, taking medication, or managing a health condition, please consult a qualified healthcare professional before trying new herbs.

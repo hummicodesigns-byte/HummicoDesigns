@@ -1,12 +1,12 @@
 ---
 title: "What's Inside a Hummico Tea Gift Box"
-description: "A guide to what goes into a Hummico tea gift box — hand-blended loose-leaf teas, honey sticks and gentle self-care touches, all curated and packed by hand in Houston, Texas."
+description: "A guide to what goes into a Hummico tea gift box hand-blended loose-leaf teas, honey sticks and gentle self-care touches, all curated and packed by hand in Houston, Texas."
 pubDate: 2026-06-02
 image: "/blog1.jpg" # TODO_HUMMICO: add hero/card image path in /public (e.g. /blog/gift-box.jpg)
-excerpt: "Hand-blended teas, honey sticks and gentle self-care touches — a look at what we curate into every box, and how to choose the right one."
+excerpt: "Hand-blended teas, honey sticks and gentle self-care touches a look at what we curate into every box, and how to choose the right one."
 ---
 
-A Hummico tea gift box is designed to feel like a moment of calm wrapped up and handed to someone you care about. So what's actually inside? Here's a look at the kinds of thoughtful pieces we tuck into our boxes — and how to choose the right one.
+A Hummico tea gift box is designed to feel like a moment of calm wrapped up and handed to someone you care about. So what's actually inside? Here's a look at the kinds of thoughtful pieces we tuck into our boxes and how to choose the right one.
 
 ## More than tea
 
@@ -21,15 +21,15 @@ At the heart of every box is a selection of our hand-blended, loose-leaf botanic
 - **English Garden** — chamomile and soft florals
 - Single botanicals such as chamomile, lavender, peppermint, hibiscus and rooibos
 
-Each blend is packed in small batches so the flowers and leaves arrive fragrant and fresh. *TODO_HUMMICO: confirm exactly which blends ship in each box so this list matches your current line-up.*
+Each blend is packed in small batches so the flowers and leaves arrive fragrant and fresh.
 
 ## Honey sticks & little sweet touches
 
-Many of our boxes include honey sticks — a tidy, mess-free way to add a touch of natural sweetness to a fresh cup. They're a small detail people genuinely love, and they help the box feel complete.
+Many of our boxes include honey sticks a tidy, mess-free way to add a touch of natural sweetness to a fresh cup. They're a small detail people genuinely love, and they help the box feel complete.
 
 ## Self-care touches
 
-Because a good cup of tea pairs so well with a few quiet minutes, several boxes include gentle self-care extras — small luxuries chosen to match the calm, cosy mood of the tea. *TODO_HUMMICO: list the specific self-care items you currently include (for example a candle, bath soak, or lip balm) so we can name them here.*
+Because a good cup of tea pairs so well with a few quiet minutes, several boxes include gentle self-care extras small luxuries chosen to match the calm, cosy mood of the tea.
 
 ## Thoughtfully packaged in Houston
 
@@ -50,4 +50,4 @@ Ready to explore? Browse the full range on our [Collections page](/collections) 
 
 ---
 
-*TODO_HUMMICO: confirm your exact disclaimer wording.* This guide is for general information and enjoyment only and is not medical or health advice. Hummico teas and botanical blends are not intended to diagnose, treat, cure, or prevent any condition. Please check each product listing for full ingredients, and consult a qualified healthcare professional if you are pregnant, nursing, taking medication, or managing a health condition.
+ This guide is for general information and enjoyment only and is not medical or health advice. Hummico teas and botanical blends are not intended to diagnose, treat, cure, or prevent any condition. Please check each product listing for full ingredients, and consult a qualified healthcare professional if you are pregnant, nursing, taking medication, or managing a health condition.
