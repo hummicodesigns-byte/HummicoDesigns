@@ -1188,6 +1188,8 @@ const schemas = [
 </script>
 
 <script>
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
   // ── Filter chips (Shop by occasion) ────────────────────────────────────────
   // Filters ONLY the Our Collections grid. Best Sellers and Featured Gifts always show
   // all of their products. A product matches a chip if its data-tags contains ANY of the
@@ -1222,6 +1224,14 @@ const schemas = [
       chipEls.forEach((c) => c.setAttribute('aria-pressed', 'false'));
       chip.setAttribute('aria-pressed', 'true');
       applyFilter(chip.getAttribute('data-filter') || '');
+
+      // Filtering shows/hides cards, which changes the Our Collections height and shifts
+      // everything below it. ScrollTrigger caches layout positions on init, so the pinned
+      // Featured Gifts stack just below would trigger at stale scroll offsets. Let the
+      // display:none/'' reflow settle a tick, then recalculate all trigger positions.
+      setTimeout(() => {
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+      }, 50);
     });
   });
 </script>
