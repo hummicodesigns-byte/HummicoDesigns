@@ -245,7 +245,6 @@
   // TODO_HUMMICO: Add MailerLite API token and group ID once client creates account.
   // Replace MAILERLITE_TOKEN and MAILERLITE_GROUP_ID below.
   const MAILERLITE_TOKEN = 'TODO_HUMMICO_REPLACE_WITH_REAL_TOKEN';
-  const MAILERLITE_GROUP_ID = 'TODO_HUMMICO_REPLACE_WITH_REAL_GROUP_ID';
 
   const form = document.getElementById('nl-form') as HTMLFormElement | null;
   const nameInput = document.getElementById('nl-name') as HTMLInputElement | null;
@@ -305,7 +304,6 @@
           body: JSON.stringify({
             email,
             fields: { name },
-            groups: [MAILERLITE_GROUP_ID],
           }),
         });
 
