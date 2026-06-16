@@ -242,10 +242,6 @@
 </style>
 
 <script>
-  // TODO_HUMMICO: Add MailerLite API token and group ID once client creates account.
-  // Replace MAILERLITE_TOKEN and MAILERLITE_GROUP_ID below.
-  const MAILERLITE_TOKEN = 'TODO_HUMMICO_REPLACE_WITH_REAL_TOKEN';
-
   const form = document.getElementById('nl-form') as HTMLFormElement | null;
   const nameInput = document.getElementById('nl-name') as HTMLInputElement | null;
   const emailInput = document.getElementById('nl-email') as HTMLInputElement | null;
@@ -287,32 +283,26 @@
         return;
       }
 
-      // Not wired up yet — gently note it instead of calling the API.
-      if (MAILERLITE_TOKEN.startsWith('TODO_HUMMICO')) {
-        showMsg('Sign-ups open soon — check back shortly.');
-        return;
-      }
-
       submitBtn.disabled = true;
       try {
-        const res = await fetch('https://connect.mailerlite.com/api/subscribers', {
+        // POST to our own Cloudflare Pages Function, which holds the MailerLite token
+        // server-side (env var) and forwards the request. The token never reaches the browser.
+        const res = await fetch('/api/subscribe', {
           method: 'POST',
-          headers: {
-            Authorization: `Bearer ${MAILERLITE_TOKEN}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email,
-            fields: { name },
-          }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email }),
         });
 
-        if (!res.ok) throw new Error(`MailerLite responded ${res.status}`);
+        const result = await res.json();
 
-        // Replace the form with the warm welcome confirmation.
-        clearMsg();
-        form.hidden = true;
-        success.hidden = false;
+        if (result.success) {
+          clearMsg();
+          form.hidden = true;
+          success.hidden = false;
+        } else {
+          submitBtn.disabled = false;
+          showMsg('Something went wrong — please try again later.');
+        }
       } catch (err) {
         submitBtn.disabled = false;
         showMsg('Something went wrong — please try again later.');
