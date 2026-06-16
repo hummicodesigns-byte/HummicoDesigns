@@ -31,7 +31,7 @@ const blurbs = [
 ---
 
 <section class="philosophy" aria-label="Our philosophy" data-philosophy>
-  <div class="philosophy-pin">
+  <div class="philosophy-inner">
     <!-- Section heading — real static HTML, stays above the cards -->
     <div class="philosophy-head">
       <p class="philosophy-eyebrow">Our philosophy</p>
@@ -41,22 +41,45 @@ const blurbs = [
       </p>
     </div>
 
-    <!-- Horizontal track (GSAP animates this existing DOM; it never injects text) -->
-    <div class="philosophy-track" data-track>
-      {blurbs.map((blurb) => (
-        <article class="pcard">
-          <div class="pcard-bg" style={`background-image:url('${blurb.image}')`}></div>
-          <div class="pcard-overlay"></div>
-          <div class="pcard-content">
-            <span class="pcard-num">{blurb.num}</span>
-            <h3 class="pcard-title">{blurb.title}</h3>
-            <p class="pcard-body">{blurb.body}</p>
-            <a href={blurb.link} class="pcard-readmore">
-              Read more
-              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
-          </div>
-        </article>
+    <!-- Single-card carousel: every card is real HTML; inactive ones are clipped by the
+         viewport (overflow:hidden) and the track is moved with translateX. JS only switches
+         which one is shown (arrows + dots + finger swipe); it never injects text. -->
+    <div class="philosophy-carousel" data-philosophy-carousel>
+      <button class="philosophy-arrow prev" data-prev type="button" aria-label="Previous card">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+
+      <div class="philosophy-viewport" data-philosophy-viewport>
+        <div class="philosophy-track" data-philosophy-track>
+          {blurbs.map((blurb) => (
+            <div class="philosophy-slide">
+              <article class="pcard">
+                <div class="pcard-bg" style={`background-image:url('${blurb.image}')`}></div>
+                <div class="pcard-overlay"></div>
+                <div class="pcard-content">
+                  <span class="pcard-num">{blurb.num}</span>
+                  <h3 class="pcard-title">{blurb.title}</h3>
+                  <p class="pcard-body">{blurb.body}</p>
+                  <a href={blurb.link} class="pcard-readmore">
+                    Read more
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  </a>
+                </div>
+              </article>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <button class="philosophy-arrow next" data-next type="button" aria-label="Next card">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <!-- Position dots (active dot is highlighted; click to jump) -->
+    <div class="philosophy-dots" data-philosophy-dots>
+      {blurbs.map((_, i) => (
+        <button class="philosophy-dot" data-dot type="button" aria-label={`Go to card ${i + 1}`}></button>
       ))}
     </div>
   </div>
@@ -67,23 +90,18 @@ const blurbs = [
     background-color: #faf6f0;
     position: relative;
     overflow: hidden;
+    padding: 100px 20px;
   }
-
-  /* Pinned viewport on desktop: heading on top, horizontal track below.
-     Capped to exactly one viewport (height, not min-height) so justify-content:center
-     vertically centers the whole composition while pinned — otherwise the heading +
-     tall cards + padding overflow 100vh and the cards get pushed to the bottom. */
-  .philosophy-pin {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: clamp(28px, 4vh, 56px);
-    padding: 24px 0;
+  .philosophy-inner {
+    max-width: 1200px; /* room for the wider landscape cards; caps on ultra-wide screens */
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 
   .philosophy-head {
     text-align: center;
+    margin-bottom: 50px;
     padding: 0 24px;
   }
   .philosophy-eyebrow {
@@ -117,20 +135,38 @@ const blurbs = [
     letter-spacing: 0.02em;
   }
 
-  /* Horizontal track */
+  /* ── Carousel: one card centered, arrows flank it (mirrors Reviews) ──
+     Desktop card is landscape (~780×480). The 80px side padding = arrow (52px) + ~28px
+     gap, so each arrow sits just outside the card edge, vertically centered. */
+  .philosophy-carousel {
+    position: relative;
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 80px;
+  }
+  .philosophy-viewport {
+    overflow: hidden;
+  }
   .philosophy-track {
     display: flex;
-    gap: clamp(24px, 3vw, 40px);
-    padding: 0 6vw;
-    width: max-content;
+    flex-wrap: nowrap;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
   }
+  .philosophy-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 6px 4px;
+  }
 
+  /* Card design — visual styling unchanged; dimensions are landscape on desktop.
+     Width fills the slide (driven by the carousel padding above), height is fixed. */
   .pcard {
     position: relative;
-    flex: 0 0 auto;
-    width: min(80vw, 640px);
-    height: min(70vh, 720px);
+    width: 100%;
+    height: 480px;
     border-radius: 22px;
     overflow: hidden;
     box-shadow: 0 26px 60px rgba(34, 82, 52, 0.18);
@@ -210,82 +246,124 @@ const blurbs = [
   .pcard-readmore svg { transition: transform 0.25s ease; }
   .pcard-readmore:hover { color: #e491a6; gap: 13px; }
 
-  /* ── Mobile (<=768px): no pin/hijack — a finger-swipeable horizontal carousel ── */
-  @media (max-width: 768px) {
-    .philosophy-pin {
-      height: auto;
-      min-height: 0;
-      display: block;
-      padding: 90px 0;
+  /* Arrows — same style as Reviews */
+  .philosophy-arrow {
+    position: absolute;
+    top: 50%;
+    margin-top: -26px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    background-color: #225234;
+    color: #faf6f0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 26px rgba(34, 82, 52, 0.22);
+    transition: background-color 0.25s ease, transform 0.2s ease;
+    z-index: 3;
+  }
+  .philosophy-arrow.prev { left: 0; }
+  .philosophy-arrow.next { right: 0; }
+  .philosophy-arrow:hover { background-color: #2d6b47; transform: scale(1.07); }
+
+  /* Position dots */
+  .philosophy-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 34px;
+  }
+  .philosophy-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background-color: rgba(34, 82, 52, 0.22);
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+  }
+  .philosophy-dot:hover { background-color: rgba(34, 82, 52, 0.4); }
+  .philosophy-dot[aria-current='true'] {
+    background-color: #e491a6;
+    transform: scale(1.25);
+  }
+
+  /* ── Tablet (600–899px): proportionally smaller landscape card (~540×380) ── */
+  @media (min-width: 600px) and (max-width: 899px) {
+    .philosophy-carousel { padding: 0 64px; }
+    .pcard { height: 380px; }
+  }
+
+  /* ── Mobile (<=599px): one card fills the screen; arrows straddle its L/R edges ── */
+  @media (max-width: 599px) {
+    .philosophy { padding: 70px 20px; }
+    .philosophy-head { margin-bottom: 40px; }
+    .philosophy-carousel {
+      padding: 0; /* no gutters; the slide inset makes room for the overlapping arrows */
     }
-    .philosophy-head {
-      margin-bottom: 40px;
-    }
-    .philosophy-track {
-      flex-direction: row;
-      flex-wrap: nowrap;
-      width: auto;
-      gap: 18px;
-      padding: 4px 11vw; /* side padding lets first/last card center-snap */
-      transform: none !important; /* guard against any stale GSAP transform */
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
-      scroll-padding: 0 11vw;
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior-x: contain;
-      scrollbar-width: none; /* Firefox */
-    }
-    .philosophy-track::-webkit-scrollbar {
-      display: none; /* Chrome/Safari */
+    .philosophy-slide {
+      padding: 6px 26px; /* insets the card so each arrow sits half-on / half-off its edge */
     }
     .pcard {
-      width: 78vw;
-      max-width: 440px;
       height: 70vh;
       max-height: 560px;
-      scroll-snap-align: center;
     }
+    .philosophy-arrow {
+      top: 50%;
+      margin-top: -26px;
+      width: 52px;
+      height: 52px;
+    }
+    .philosophy-arrow.prev { left: 0; right: auto; }
+    .philosophy-arrow.next { right: 0; left: auto; }
   }
 </style>
 
 <script>
-  import gsap from 'gsap';
-  import ScrollTrigger from 'gsap/ScrollTrigger';
+  // Philosophy — single-card arrow / dot / swipe carousel.
+  // Replaces the previous GSAP ScrollTrigger horizontal scroll-stack. Scoped to THIS
+  // carousel so it never grabs another section's track (Reviews uses its own data-* hooks).
+  const root = document.querySelector<HTMLElement>('[data-philosophy-carousel]');
+  const track = root?.querySelector<HTMLElement>('[data-philosophy-track]');
+  const viewport = root?.querySelector<HTMLElement>('[data-philosophy-viewport]');
+  const prev = root?.querySelector<HTMLElement>('[data-prev]');
+  const next = root?.querySelector<HTMLElement>('[data-next]');
+  const dots = Array.from(
+    document.querySelectorAll<HTMLElement>('[data-philosophy-dots] [data-dot]')
+  );
 
-  gsap.registerPlugin(ScrollTrigger);
+  if (track && viewport && prev && next) {
+    const count = track.children.length;
+    let index = 0;
 
-  const section = document.querySelector<HTMLElement>('[data-philosophy]');
-  const track = document.querySelector<HTMLElement>('[data-track]');
+    const go = (i: number) => {
+      index = ((i % count) + count) % count; // wrap/loop both ways
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((dot, d) => dot.setAttribute('aria-current', d === index ? 'true' : 'false'));
+    };
 
-  if (section && track) {
-    const mm = gsap.matchMedia();
+    prev.addEventListener('click', () => go(index - 1));
+    next.addEventListener('click', () => go(index + 1));
+    dots.forEach((dot, d) => dot.addEventListener('click', () => go(d)));
 
-    // Desktop only: pin the section and drive the horizontal scroll with vertical scroll.
-    // matchMedia automatically reverts/tears this down (clearing inline transforms and the
-    // ScrollTrigger) when the viewport drops to <=768px, so mobile gets the CSS stack.
-    mm.add('(min-width: 769px)', () => {
-      const getScrollAmount = () => Math.max(0, track.scrollWidth - window.innerWidth);
-
-      // Cards travel exactly the overflow width, but the pin is held over a longer scroll
-      // distance (overflow width × this factor) so the glide is unhurried and gradual.
-      const SCROLL_FACTOR = 1.5;
-
-      const tween = gsap.to(track, {
-        x: () => -getScrollAmount(),
-        ease: 'none',
-      });
-
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top top',
-        end: () => `+=${getScrollAmount() * SCROLL_FACTOR}`,
-        pin: true,
-        scrub: 1,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        animation: tween,
-      });
+    // Finger swipe on mobile
+    let startX = 0;
+    let dragging = false;
+    viewport.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      dragging = true;
+    }, { passive: true });
+    viewport.addEventListener('touchend', (e) => {
+      if (!dragging) return;
+      dragging = false;
+      const delta = e.changedTouches[0].clientX - startX;
+      if (Math.abs(delta) > 40) go(delta < 0 ? index + 1 : index - 1);
     });
+
+    go(0);
   }
 </script>

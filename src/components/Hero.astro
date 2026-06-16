@@ -57,6 +57,26 @@ const ETSY_SHOP = 'https://www.etsy.com/shop/HummicoDesigns';
     background-position: center;
   }
 
+  /* FDA seal — absolute overlay pinned to the hero's top-right, sitting above the
+     background + dark gradient (z-index 5) but well below the fixed navbar, which lives
+     outside this section. Slight tilt + transparency so it accents rather than crowds. */
+  .hero-fda {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    width: 150px;
+    height: auto;
+    opacity: 0.95;
+    transform: rotate(-8deg);
+    transform-origin: center;
+    z-index: 5;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .hero-fda:hover {
+    opacity: 1;
+    transform: rotate(-5deg);
+  }
+
   /* Soft texture + dark gradient so overlaid text stays legible on any image */
   .hero-overlay {
     position: relative;
@@ -179,7 +199,12 @@ const ETSY_SHOP = 'https://www.etsy.com/shop/HummicoDesigns';
     /* Smaller navbar on phones → smaller offset; swap to the portrait hero image. */
     .hero { margin-top: 130px; min-height: calc(88vh - 130px); }
     .hero-overlay { min-height: calc(88vh - 130px); padding: 70px 22px; }
-    .hero-bg { background-image: url('/hero-mobile.png'); }
+    .hero-bg { background-image: url('/hero-mobile1.png'); }
     .hero-eyebrow { letter-spacing: 0.22em; }
+    .hero-fda { width: 115px; top: 18px; right: 30px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-fda { width: 95px; top: 16px; right: 16px; }
   }
 </style>

@@ -1,61 +1,33 @@
 ---
 ---
-<section style="padding:100px 20px;position:relative;background-image:url(/leaves2.jpg);background-size:cover;background-position:center;border-radius:20px;overflow:hidden;">
-  <!-- Dark Overlay -->
-  <div style="position:absolute;top:0;left:0;right:0;bottom:0;background-color:rgba(0, 0, 0, 0.4);"></div>
-
-  <!-- Decorative Elements -->
-  <div style="position:absolute;top:15%;left:3%;opacity:0.08;transform:rotate(25deg);">
-    <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
-      <rect x="20" y="20" width="60" height="60" stroke="#225234" stroke-width="1" rx="10" fill="none" />
-    </svg>
-  </div>
-
-  <div style="max-width:1000px;margin:0 auto;">
-    <div class="guarantee-grid" style="display:grid;grid-template-columns:240px 1fr;gap:50px;align-items:center;background-color:#faf6f0;border-radius:30px;padding:50px;position:relative;z-index:2;">
-      <!-- Guarantee Image -->
-      <!-- TODO_HUMMICO: Replace /Guarantee.png with a new badge that says "Our Promise" when client provides -->
-      <div style="display:flex;align-items:center;justify-content:center;">
-        <img src="/Guarantee.png" alt="Hummico Designs Our Promise badge" style="width:220px;height:220px;object-fit:contain;border-radius:20px;" />
-      </div>
-
-      <!-- Content -->
-      <div>
-        <h2 style="font-family:'Jost', serif;font-size:2.6rem;font-weight:600;color:#225234;margin-bottom:15px;line-height:1.2;">
-          Our promise
-        </h2>
-        <div style="width:60px;height:3px;background-color:#e491a6;margin-bottom:20px;"></div>
-        <p style="font-size:1.05rem;line-height:1.8;color:#2d4a39;opacity:0.9;">
-          Every box is packed by hand and checked twice. If yours doesn't feel right,
-          tell us, we'll make it right. 
-        </p>
-      </div>
-    </div>
-  </div>
+<section class="fda-banner-section" aria-label="FDA compliance and quality information">
+  <!-- TODO_HUMMICO: Client-provided FDA compliance banner — replacing the previous Our Promise content -->
+  <!-- TODO_HUMMICO: /fda-banner-mobile.png must exist in public/ — client to provide at 800x600px (4:3 mobile-friendly FDA banner). Until provided, mobile will fall through to /fda-banner.png. -->
+  <picture>
+    <source media="(max-width: 600px)" srcset="/fda-mobile-banner.png" />
+    <img
+      src="/fda-banner.png"
+      alt="Hummico Designs FDA compliance and quality information"
+      class="fda-banner-img"
+    />
+  </picture>
 </section>
 
 <style>
-  @media (max-width: 768px) {
-    .guarantee-grid {
-      grid-template-columns: 1fr !important;
-      text-align: center;
-      padding: 30px 20px !important;
-      gap: 20px !important;
-    }
-    .guarantee-grid img {
-      width: 150px !important;
-      height: 150px !important;
-    }
-    .guarantee-grid h2 {
-      font-size: 1.9rem !important;
-    }
-    .guarantee-grid p {
-      font-size: 0.95rem !important;
-    }
-    /* Badge above text, both centered on mobile */
-    .guarantee-grid > div:last-child > div {
-      margin-left: auto;
-      margin-right: auto;
-    }
+  /* The banner image IS the section's content. Desktop art is a wide 5:1 band, mobile a
+     4:3 crop (swapped via the <picture> source above). Keep vertical spacing minimal so it
+     integrates cleanly with the sections above and below. */
+  .fda-banner-section {
+    width: 100%;
+    margin: 10px 0;
+  }
+  .fda-banner-section picture {
+    display: block;
+    width: 100%;
+  }
+  .fda-banner-img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 </style>

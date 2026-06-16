@@ -17,7 +17,7 @@
             <img src="/card2.png" alt="Hummico Designs business card" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;" />
           </div>
 
-          <!-- BACK: contact form -->
+          <!-- BACK: contact form -->          
           <div class="flip-back">
             <div class="bc-thankyou" id="bc-thankyou" style="display:none;text-align:center;color:#faf6f0;">
               <div style="font-size:2.5rem;margin-bottom:12px;">🌿</div>
@@ -128,33 +128,16 @@
     setSubtitle(card.classList.contains('flipped'));
   });
 
-  form?.addEventListener('submit', async (e) => {
+  form?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        if (formWrap) formWrap.style.display = 'none';
-        if (thankyou) thankyou.style.display = 'block';
-        setTimeout(() => {
-          form.reset();
-          if (formWrap) formWrap.style.display = 'block';
-          if (thankyou) thankyou.style.display = 'none';
-          card?.classList.remove('flipped');
-          setSubtitle(false);
-        }, 2500);
-      } else {
-        alert('Something went wrong. Please try again or email us directly at Hummicodesigns@gmail.com.');
-      }
-    } catch (error) {
-      alert('Connection issue. Please try again or email us directly at Hummicodesigns@gmail.com.');
-    }
+    if (formWrap) formWrap.style.display = 'none';
+    if (thankyou) thankyou.style.display = 'block';
+    setTimeout(() => {
+      form.reset();
+      if (formWrap) formWrap.style.display = 'block';
+      if (thankyou) thankyou.style.display = 'none';
+      card?.classList.remove('flipped');
+      setSubtitle(false);
+    }, 2500);
   });
 </script>
