@@ -128,16 +128,46 @@
     setSubtitle(card.classList.contains('flipped'));
   });
 
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (formWrap) formWrap.style.display = 'none';
-    if (thankyou) thankyou.style.display = 'block';
-    setTimeout(() => {
-      form.reset();
-      if (formWrap) formWrap.style.display = 'block';
-      if (thankyou) thankyou.style.display = 'none';
-      card?.classList.remove('flipped');
-      setSubtitle(false);
-    }, 2500);
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+
+    try {
+      // Build the payload from the form (includes access_key, subject, name, email, message)
+      const data = Object.fromEntries(new FormData(form));
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const result = await res.json();
+
+      if (res.ok && result.success) {
+        // Only show the thank-you UI once the API confirms the send.
+        if (formWrap) formWrap.style.display = 'none';
+        if (thankyou) thankyou.style.display = 'block';
+        setTimeout(() => {
+          form.reset();
+          if (formWrap) formWrap.style.display = 'block';
+          if (thankyou) thankyou.style.display = 'none';
+          card?.classList.remove('flipped');
+          setSubtitle(false);
+        }, 2500);
+      } else {
+        console.error('Web3Forms submission failed:', result);
+        alert('Sorry, your message could not be sent. Please try again, or email us directly at Hummicodesigns@gmail.com.');
+      }
+    } catch (err) {
+      console.error('Web3Forms submission error:', err);
+      alert('Sorry, your message could not be sent. Please try again, or email us directly at Hummicodesigns@gmail.com.');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
   });
 </script>

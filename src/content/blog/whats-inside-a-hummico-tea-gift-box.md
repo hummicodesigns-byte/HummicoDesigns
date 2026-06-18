@@ -16,9 +16,9 @@ While beautiful tea is always the centrepiece, our boxes are curated as a comple
 
 At the heart of every box is a selection of our hand-blended, loose-leaf botanicals. Depending on the box, that might include:
 
-- **Persian Herbal Garden** — a rose-forward, floral blend
-- **Moroccan** — bright, sweet mint
-- **English Garden** — chamomile and soft florals
+- A rose-forward, floral blend
+- A bright, sweet mint blend
+- A gentle blend of chamomile and soft florals
 - Single botanicals such as chamomile, lavender, peppermint, hibiscus and rooibos
 
 Each blend is packed in small batches so the flowers and leaves arrive fragrant and fresh.

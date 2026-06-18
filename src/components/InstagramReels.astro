@@ -1,8 +1,8 @@
 ---
 const instagramReels = [
-  { id: 1, video: '/hummico-video.mp4', title: 'Every box is carefully packed by hand with love', views: '12.5K' },
-  { id: 2, video: '/reel2.mp4', title: 'Morning Routine with Wellness Tea', views: '8.2K' },
-  { id: 3, video: '/reel3.mp4', title: 'The Gift That Never Gets Old', views: '15.1K' },
+  { id: 1, video: '/hummico-video.mp4', title: 'Every box is carefully packed by hand with love' },
+  { id: 2, video: '/reel2.mp4', title: 'Morning Routine with Wellness Tea' },
+  { id: 3, video: '/reel3.mp4', title: 'The Gift That Never Gets Old' },
 ];
 ---
 
@@ -34,9 +34,8 @@ const instagramReels = [
             <div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);background-color:rgba(255,255,255,0.9);border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,0.2);">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#225234" stroke="#225234" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg>
             </div>
-            <!-- Title and Views -->
+            <!-- Title -->
             <h3 style="font-size:1rem;font-weight:600;color:#fff;margin-bottom:5px;">{reel.title}</h3>
-            <p style="font-size:0.85rem;color:#faf6f0;">{reel.views} views</p>
           </div>
         </div>
       ))}

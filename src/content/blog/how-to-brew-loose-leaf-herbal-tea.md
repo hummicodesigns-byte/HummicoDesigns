@@ -6,7 +6,7 @@ image: "/blog3.jpg" # TODO_HUMMICO: add hero/card image path in /public (e.g. /b
 excerpt: "Water temperatures, steeping times, and easy steps for getting the most flavour, colour and aroma from every cup of loose-leaf herbal tea."
 ---
 
-Loose-leaf herbal tea is one of life's small luxuries and brewing it well is easier than you might think. Whether you've just opened a box of our Persian Herbal Garden blend or a tin of single-ingredient chamomile, a few simple habits will help you draw out the full flavour, colour and aroma from every spoonful.
+Loose-leaf herbal tea is one of life's small luxuries and brewing it well is easier than you might think. Whether you've just opened a box of our signature herbal blends or a tin of single-ingredient chamomile, a few simple habits will help you draw out the full flavour, colour and aroma from every spoonful.
 
 ## Why loose-leaf?
 
