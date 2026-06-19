@@ -1,0 +1,141 @@
+---
+// Dismissible cookie notice. Purely a notice — it sets NO tracking/analytics cookies.
+// State (dismissed-or-not) lives in localStorage so it shows once per visitor.
+// The banner ships hidden (display:none); the script reveals it only when not yet dismissed,
+// so already-dismissed visitors never see a flash of it.
+---
+
+<div
+  id="cookie-notice"
+  class="cookie-notice"
+  role="dialog"
+  aria-label="Cookie notice"
+  style="display:none;"
+>
+  <div class="cookie-notice-inner">
+    <p class="cookie-notice-text">
+      We use minimal cookies to keep the site working smoothly. Read our
+      <a href="/privacy">Privacy Policy</a> to learn more.
+    </p>
+    <button id="cookie-notice-btn" class="cookie-notice-btn" type="button">Got it</button>
+  </div>
+</div>
+
+<style>
+  .cookie-notice {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background-color: #faf6f0;
+    border-top: 1px solid rgba(34, 82, 52, 0.1);
+    box-shadow: 0 -6px 24px rgba(34, 82, 52, 0.08);
+    /* Fade transition target; starts transparent and is faded in by the script. */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .cookie-notice.is-visible {
+    opacity: 1;
+  }
+
+  .cookie-notice-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .cookie-notice-text {
+    margin: 0;
+    color: #225234;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .cookie-notice-text a {
+    color: #225234;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .cookie-notice-text a:hover {
+    color: #2d6b47;
+  }
+
+  .cookie-notice-btn {
+    flex-shrink: 0;
+    background-color: #225234;
+    color: #faf6f0;
+    border: none;
+    border-radius: 999px;
+    padding: 8px 20px;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.2s ease;
+  }
+  .cookie-notice-btn:hover {
+    background-color: #2d6b47;
+    transform: translateY(-1px);
+  }
+  .cookie-notice-btn:focus-visible {
+    outline: 2px solid #225234;
+    outline-offset: 2px;
+  }
+
+  /* Mobile: stack text above button, both centered. */
+  @media (max-width: 599px) {
+    .cookie-notice-inner {
+      flex-direction: column;
+      text-align: center;
+      padding: 12px 16px;
+      gap: 12px;
+    }
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'hummico_cookie_dismissed';
+  const banner = document.getElementById('cookie-notice');
+  const button = document.getElementById('cookie-notice-btn');
+
+  if (banner && button) {
+    let dismissed = false;
+    try {
+      dismissed = localStorage.getItem(STORAGE_KEY) === 'true';
+    } catch {
+      // localStorage unavailable (e.g. privacy mode) — treat as not dismissed.
+    }
+
+    if (!dismissed) {
+      // Reveal, then fade in on the next frame so the opacity transition runs.
+      banner.style.display = 'block';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => banner.classList.add('is-visible'));
+      });
+
+      const dismiss = () => {
+        try {
+          localStorage.setItem(STORAGE_KEY, 'true');
+        } catch {
+          // Ignore storage write failures; the banner still dismisses for this session.
+        }
+        // Fade out (~200ms), then remove from the DOM once the transition ends.
+        banner.style.transition = 'opacity 0.2s ease';
+        banner.classList.remove('is-visible');
+        const remove = () => banner.remove();
+        banner.addEventListener('transitionend', remove, { once: true });
+        // Fallback in case transitionend doesn't fire.
+        setTimeout(remove, 300);
+      };
+
+      // Click handles Enter/Space natively on a real <button>.
+      button.addEventListener('click', dismiss);
+    }
+  }
+</script>
