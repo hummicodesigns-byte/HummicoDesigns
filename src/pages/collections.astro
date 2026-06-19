@@ -2,26 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { breadcrumbSchema, productSchema } from '../lib/seo';
 
-// ─────────────────────────────────────────────────────────────────────────────
-// COLLECTIONS PAGE — placeholder data
-//
-// Everything below is REAL static content rendered into the HTML at build time
-// (good for SEO). GSAP only animates the existing DOM; it never injects text.
-//
-// HOW TO ADD A REAL PRODUCT LATER:
-//   Copy one object in an array below and fill in the fields:
-//     name        → product title
-//     description → short calming/benefit-adjacent blurb (NO medical claims)
-//     price       → display price string, e.g. '$32.00'
-//     etsyLink    → the product's Etsy listing URL
-//     image       → '/your-photo.jpg' in /public  (leave '' to show the placeholder box)
-//   The same <ProductCard> markup powers Best Sellers and Our Collections, so a
-//   product object is interchangeable between the two arrays.
-// ─────────────────────────────────────────────────────────────────────────────
-
-// Best Sellers re-features 4 REAL products that also live in `collectionProducts` below.
-// (Curated showcase — same product objects appear in both sections, intentionally.)
-// Available tags: for-her, for-him, self-care, birthday, mothers-day, fathers-day, get-well, sympathy, comfort, wellness, spa, sampler, thank-you, relaxation
 const bestSellers = [
   {
     name: 'Birthday Gift Box | Herbal Tea, Candle & Infuser Tea Set',
@@ -286,7 +266,7 @@ const schemas = [
 ---
 
 <BaseLayout
-  title="Tea Ritual Boxes & Wellness Gift Sets — Hummico Collections"
+  title="Hummico Collections"
   description="Explore Hummico's organic herbal tea boxes, wellness gifts, coffee retreat sets and self-care bundles — hand-packed in Houston, TX and available to shop on Etsy."
   schemas={schemas}
 >
